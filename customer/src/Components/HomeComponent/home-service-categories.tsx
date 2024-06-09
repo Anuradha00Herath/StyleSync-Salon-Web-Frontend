@@ -1,5 +1,5 @@
 import React from "react";
-import nextImage from "../assets/next.png"
+import nextImage from "../../assets/next.png"
 
 type Props = {
   image: string;
@@ -43,7 +43,7 @@ export function ServiceCategories(props: Props) {
             color: "#844704",
             textDecoration: "none",
           }}
-          href="abs"
+          href="http://localhost:3000/available-salons"
         >
           Make an appointment
         </a>

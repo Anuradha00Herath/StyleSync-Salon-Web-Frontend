@@ -1,4 +1,4 @@
-import { ServiceCategories } from "../../Components/home-service-categories";
+import { ServiceCategories } from "../../Components/HomeComponent/home-service-categories";
 
 import hairImage from "../../assets/hair.png";
 import nailImage from "../../assets/nail.png";

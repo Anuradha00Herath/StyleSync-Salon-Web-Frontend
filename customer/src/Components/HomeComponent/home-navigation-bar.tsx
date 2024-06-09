@@ -1,5 +1,5 @@
 import React from "react";
-import "../Components/home-navigation-bar.css";
+import "../HomeComponent/home-navigation-bar.css";
 
 export function HomeNavigationBar() {
   return (
@@ -7,7 +7,8 @@ export function HomeNavigationBar() {
       style={{
         backgroundColor: "#2E2528",
         width: "100%",
-        alignItems: "center"
+        alignItems: "center",
+        position: "fixed"
       }}
     >
       <nav className="navbar">
@@ -19,19 +20,19 @@ export function HomeNavigationBar() {
         <div className="navbar-center">
           <ul className="nav-links">
             <li>
-              <a href="/products">Home</a>
+              <a href="http://localhost:3000/home#home">Home</a>
             </li>
             <li>
-              <a href="/about">Services</a>
+              <a href="http://localhost:3000/home#service">Services</a>
             </li>
             <li>
-              <a href="/contact">Articles</a>
+              <a href="http://localhost:3000/home#article">Articles</a>
             </li>
             <li>
-              <a href="/contact">FAQs</a>
+              <a href="http://localhost:3000/home#faqs">FAQs</a>
             </li>
             <li>
-              <a href="/contact">Contact Us</a>
+              <a href="http://localhost:3000/home#message">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -49,7 +50,7 @@ export function HomeNavigationBar() {
             <a style={{
             color: "white",
             textDecoration: "none"
-          }} href="abdn.com">Login</a>
+          }} href="http://localhost:3000/login">Login</a>
           </div>
           <div style={{
             backgroundColor: "white",
@@ -63,7 +64,7 @@ export function HomeNavigationBar() {
             <a style={{
                 color: "#2e2528",
                 textDecoration: "none"
-            }} href="gfdhsd.com">Register</a>
+            }} href="http://localhost:3000/register">Register</a>
           </div>
         </div>
       </nav>

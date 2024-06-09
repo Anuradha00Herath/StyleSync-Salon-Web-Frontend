@@ -1,8 +1,9 @@
 import image from "../../assets/home.jpg";
 
-export function StartingPage(){
-    return(
-        <div>        <div
+export function StartingPage() {
+  return (
+    <div>
+      <div
         style={{
           height: 650,
           flexDirection: "row",
@@ -27,19 +28,19 @@ export function StartingPage(){
                 fontWeight: "bold",
               }}
             >
-              Discover Your Signature Style: Find Your Perfect Salon
-              Experience for Ultimate Beauty and Wellness.
+              Discover Your Signature Style: Find Your Perfect Salon Experience
+              for Ultimate Beauty and Wellness.
             </p>
             <p>
               Welcome to our chic online haven where beauty meets
               sophistication! Explore our salon web page for an exclusive
-              journey into the world of premier beauty and wellness. From
-              expert stylists to rejuvenating spa treatments, discover a
-              personalized sanctuary tailored just for you. Uncover the latest
-              trends, book your next appointment, and embark on a
-              transformative experience that transcends ordinary beauty.
-              Elevate your style, elevate your self – because you deserve
-              nothing but the best. Your journey to radiance begins here!
+              journey into the world of premier beauty and wellness. From expert
+              stylists to rejuvenating spa treatments, discover a personalized
+              sanctuary tailored just for you. Uncover the latest trends, book
+              your next appointment, and embark on a transformative experience
+              that transcends ordinary beauty. Elevate your style, elevate your
+              self – because you deserve nothing but the best. Your journey to
+              radiance begins here!
             </p>
             <div
               style={{
@@ -56,7 +57,7 @@ export function StartingPage(){
                   color: "#fdfdfd",
                   textDecoration: "none",
                 }}
-                href="abd.com"
+                href="http://localhost:3000/available-salons"
               >
                 Get Started
               </a>
@@ -79,6 +80,7 @@ export function StartingPage(){
             alt="home"
           />
         </div>
-      </div></div>
-    )
+      </div>
+    </div>
+  );
 }

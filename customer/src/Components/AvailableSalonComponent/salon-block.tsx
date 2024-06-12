@@ -80,7 +80,7 @@ export function SalonBlock() {
                   fontSize: 12,
                   color: "white",
                 }}
-                href="aba"
+                href="http://localhost:3000"
               >
                 Follow
               </a>
@@ -101,7 +101,7 @@ export function SalonBlock() {
                   fontSize: 12,
                   color: "white",
                 }}
-                href="aba"
+                href="http://localhost:3000/make-appointment"
               >
                 Book now
               </a>

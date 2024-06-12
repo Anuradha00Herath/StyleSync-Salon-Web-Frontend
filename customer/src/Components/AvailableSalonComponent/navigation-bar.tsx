@@ -10,7 +10,6 @@ export function NavigationBar() {
         backgroundColor: "#2E2528",
         width: "100%",
         alignItems: "center",
-        position: "fixed",
       }}
     >
       <nav className="navbar">

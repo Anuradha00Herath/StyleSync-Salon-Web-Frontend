@@ -34,10 +34,16 @@ export function TimeBlocksList() {
           flexDirection: "column" as const,
         }}
       >
-        <h3>Morning</h3>
+        <h4 style={{
+          textAlign:"center"
+        }}>Morning</h4>
         {timeSlots
           .filter((slot) => slot.period === "Morning")
           .map((slot, index) => (
+            <a style={{
+              color:"black",
+              textDecoration:"none"
+            }} href="hsdhs">
             <div
               key={index}
               style={{
@@ -46,7 +52,7 @@ export function TimeBlocksList() {
               }}
             >
               {slot.time}
-            </div>
+            </div></a>
           ))}
       </div>
       <div
@@ -56,10 +62,16 @@ export function TimeBlocksList() {
           flexDirection: "column" as const,
         }}
       >
-        <h3>Afternoon</h3>
+        <h4 style={{
+          textAlign:"center"
+        }}>Afternoon</h4>
         {timeSlots
           .filter((slot) => slot.period === "Afternoon")
           .map((slot, index) => (
+            <a style={{
+              color:"black",
+              textDecoration:"none"
+            }} href="hsdhs">
             <div
               key={index}
               style={{
@@ -68,7 +80,7 @@ export function TimeBlocksList() {
               }}
             >
               {slot.time}
-            </div>
+            </div></a>
           ))}
       </div>
       <div
@@ -78,10 +90,16 @@ export function TimeBlocksList() {
           flexDirection: "column" as const,
         }}
       >
-        <h3>Evening</h3>
+        <h4 style={{
+          textAlign:"center"
+        }}>Evening</h4>
         {timeSlots
           .filter((slot) => slot.period === "Evening")
           .map((slot, index) => (
+            <a style={{
+              color:"black",
+              textDecoration:"none"
+            }} href="hsdhs">
             <div
               key={index}
               style={{
@@ -90,7 +108,7 @@ export function TimeBlocksList() {
               }}
             >
               {slot.time}
-            </div>
+            </div></a>
           ))}
       </div>
     </div>

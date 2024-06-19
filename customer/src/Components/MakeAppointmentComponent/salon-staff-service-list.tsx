@@ -18,6 +18,11 @@ export function StaffServiceList(props: Props) {
   const [duration, setDuration] = useState("");
   const [staffId, setStaffId] = useState<Number | null>(null);
   const [serviceId, setServiceId] = useState<Number | null>(null);
+  const [serviceName, setServiceName] = useState<string | null>("");
+  const [price, setPrice] = useState<Number | null>(null);
+  const [slotStart, setSlotStart] = useState<string | null>(" ");
+  const [slotEnd, setSlotEnd] = useState<string | null>(" ");
+  const [staffName,setStaffName] = useState<string | null>(" ");
 
   const getAllCategories = async () => {
     setLoading(true);
@@ -73,13 +78,16 @@ export function StaffServiceList(props: Props) {
     }
   };
 
-  const handleStaffClick = (staffId: Number) => {
+  const handleStaffClick = (staffId: Number, staffName: string) => {
     getAllServices(staffId);
     setStaffId(staffId);
+    setStaffName(staffName);
   };
 
-  const handleServiceClick = (serviceId: Number) => {
+  const handleServiceClick = (serviceId: Number, serviceName:any, price:Number) => {
     setServiceId(serviceId);
+    setServiceName(serviceName);
+    setPrice(price);
   };
 
   const formatDate = (date: Date | null) => {
@@ -156,7 +164,7 @@ export function StaffServiceList(props: Props) {
                   id="staff1"
                   name="staff1"
                   value={staff.name}
-                  onClick={() => handleStaffClick(staff.id)}
+                  onClick={() => handleStaffClick(staff.id,staff.name)}
                 />
                 <p
                   style={{
@@ -195,7 +203,7 @@ export function StaffServiceList(props: Props) {
                   id="staff1"
                   name="staff1"
                   value={service.name}
-                  onChange={() => handleServiceClick(service.id)}
+                  onChange={() => handleServiceClick(service.id,service.name,service.price)}
                 />
                 <p
                   style={{
@@ -218,8 +226,8 @@ export function StaffServiceList(props: Props) {
           </div>
         </div>
       </div>
-      <TimeBlocksList startTime={startTime} closeTime={closeTime} duration={duration} />
-      <Calender selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      <TimeBlocksList startTime={startTime} closeTime={closeTime} duration={duration} selectedDate={selectedDate} slotStart={slotStart} setSlotStart={setSlotStart} slotEnd={slotEnd} setSlotEnd={setSlotEnd}/>
+      <Calender selectedDate={selectedDate} setSelectedDate={setSelectedDate} staffId={staffId} serviceId={serviceId} serviceName={serviceName} price={price} staffName= {staffName} slotStart={slotStart} slotEnd={slotEnd}/>
     </div>
   );
 }

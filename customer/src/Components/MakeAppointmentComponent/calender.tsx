@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   selectedDate: Date | null;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  staffId: Number | null;
+  serviceId:Number | null;
+  serviceName:string | null;
+  price:Number| null;
+  staffName: string | null;
+  slotStart: string | null;
+  slotEnd: string | null;
 };
 
-export function Calender({ selectedDate, setSelectedDate }: Props) {
+export function Calender({ selectedDate, setSelectedDate, staffId, serviceId, serviceName, price, staffName, slotStart, slotEnd }: Props) {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -55,17 +64,13 @@ export function Calender({ selectedDate, setSelectedDate }: Props) {
             width: 150,
             backgroundColor: "black",
             marginTop: 20,
-          }}
-        >
-          <a
-            style={{
-              color: "white",
+            color: "white",
               textDecoration: "none",
-            }}
-            href="http://localhost:3000/confirm-appointment"
-          >
+              cursor: "pointer"
+          }}
+          onClick={()=>navigate('/confirm-appointment',{state:{date:selectedDate,staffId:staffId,serviceId:serviceId, serviceName:serviceName, price:price,staffName:staffName, slotStart:slotStart, slotEnd:slotEnd}})}
+        >
             Book Time Slot
-          </a>
         </button>
       </div>
     </div>

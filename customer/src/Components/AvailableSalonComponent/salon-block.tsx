@@ -1,6 +1,51 @@
+import { useEffect, useState } from "react";
 import salon from "../../assets/salon.jpg";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export function SalonBlock() {
+interface SalonBlockProps {
+  id: Number;
+  name: String;
+  line1: String;
+  line2: String;
+  city: String;
+  contactNo: String;
+}
+interface MyComponentProps {
+  block: SalonBlockProps;
+}
+
+export const SalonBlock: React.FC<MyComponentProps> = ({ block }) => {
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+  const [service, setService] = useState([]);
+  const [times, setTimes] = useState([]);
+  console.log(block.id);
+
+  const getSalonDetails = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        "https://stylesync-backend-test.onrender.com/customer/customer/get-salon-details",
+        { params: { salonId: block.id } }
+      );
+      console.log(response.data.data1);
+      console.log(response.data.data2);
+      setService(response.data.data2);
+      setTimes(response.data.data1);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getSalonDetails();
+  });
+
   return (
     <div
       style={{
@@ -41,7 +86,7 @@ export function SalonBlock() {
               alignItems: "center",
             }}
           >
-            <h4>Salon Name</h4>
+            <h4>{block.name}</h4>
             <p
               style={{
                 fontSize: 12,
@@ -55,9 +100,11 @@ export function SalonBlock() {
               marginTop: -25,
             }}
           >
-            <p>Opens at 9.00 - 17.00</p>
-            <p>No. 324, Chatham street, Colombo 7.</p>
-            <p>Male Haircuts, Beard Shaving, Head Shave.</p>
+            <p>{times}</p>
+            <p>
+              {block.line1}, {block.line2}, {block.city}.
+            </p>
+            <p>{block.contactNo}</p>
           </div>
           <div
             style={{
@@ -95,6 +142,19 @@ export function SalonBlock() {
                 justifyContent: "center",
                 alignItems: "center",
               }}
+              onClick={() =>
+                navigate("/make-appointment", {
+                  state: {
+                    id: block.id,
+                    name: block.name,
+                    line1: block.line1,
+                    line2: block.line2,
+                    city: block.city,
+                    contactNo: block.contactNo,
+                    time:times
+                  },
+                })
+              }
             >
               <a
                 style={{
@@ -111,4 +171,4 @@ export function SalonBlock() {
       </div>
     </div>
   );
-}
+};

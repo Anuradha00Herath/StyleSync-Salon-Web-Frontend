@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export function Calender() {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+type Props = {
+  selectedDate: Date | null;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
+};
+
+export function Calender({ selectedDate, setSelectedDate }: Props) {
   return (
     <div
       style={{
@@ -28,10 +32,15 @@ export function Calender() {
             alignItems: "center",
           }}
         >
-          <label style={{
-            marginTop:20
-          }} htmlFor="datePicker">Select Date:</label>
-          <div style={{marginTop:10}}>
+          <label
+            style={{
+              marginTop: 20,
+            }}
+            htmlFor="datePicker"
+          >
+            Select Date:
+          </label>
+          <div style={{ marginTop: 10 }}>
             <DatePicker
               id="datePicker"
               selected={selectedDate}
@@ -40,15 +49,24 @@ export function Calender() {
             />
           </div>
         </div>
-        <button style={{
-            height:40,
-            width:150,
-            backgroundColor:"black",
-            marginTop:20
-        }}><a style={{
-            color:"white",
-            textDecoration:"none"
-        }} href="http://localhost:3000/confirm-appointment">Book Time Slot</a></button>
+        <button
+          style={{
+            height: 40,
+            width: 150,
+            backgroundColor: "black",
+            marginTop: 20,
+          }}
+        >
+          <a
+            style={{
+              color: "white",
+              textDecoration: "none",
+            }}
+            href="http://localhost:3000/confirm-appointment"
+          >
+            Book Time Slot
+          </a>
+        </button>
       </div>
     </div>
   );

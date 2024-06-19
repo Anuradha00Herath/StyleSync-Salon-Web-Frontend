@@ -1,14 +1,40 @@
+import { useLocation } from "react-router-dom";
 import { NavigationBar } from "../../Components/AvailableSalonComponent/navigation-bar";
-import { SalonBlock } from "../../Components/AvailableSalonComponent/salon-block";
 import { Footer } from "../../Components/HomeComponent/footer";
 import background from "../../assets/background.jpg";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { SalonSet } from "../../Components/AvailableSalonComponent/salon-set";
 
 export default function AvailableSalonPage() {
+  const location = useLocation();
+  const { serviceType } = location.state;
+  const [serviceSet, setServiceSet] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getAllCategories = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        "https://stylesync-backend-test.onrender.com/customer/customer/show-salons-available-categories"
+      );
+      console.log(response.data);
+      setServiceSet(response.data.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllCategories();
+  },[]);
+
   return (
     <div>
-      <div>
-        <NavigationBar />
-      </div>
+      <NavigationBar />
       <div
         style={{
           backgroundImage: `url(${background})`,
@@ -26,7 +52,7 @@ export default function AvailableSalonPage() {
           }}
         >
           <div>
-            <h1>Hair Service</h1>
+            <h1>{serviceType}</h1>
             <p>
               Enter your dates and choose from 5,000 salons to get your service!
             </p>
@@ -91,6 +117,7 @@ export default function AvailableSalonPage() {
           </div>
         </div>
       </div>
+
       <div
         style={{
           display: "flex",
@@ -98,58 +125,9 @@ export default function AvailableSalonPage() {
         }}
       >
         <div style={{ width: "80%" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h4>Recent Salons in Hair Service</h4>
-            <a
-              style={{
-                color: "black",
-              }}
-              href="http://localhost:3000/search-result"
-            >
-              View more
-            </a>
-          </div>
-          <div
-            style={{ flexWrap: "wrap", display: "flex", flexDirection: "row" }}
-          >
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h4>Popular Salons in Hair Service</h4>
-            <a
-              style={{
-                color: "black",
-              }}
-              href="http://localhost:3000/search-result"
-            >
-              View more
-            </a>
-          </div>
-          <div
-            style={{ flexWrap: "wrap", display: "flex", flexDirection: "row" }}
-          >
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-          </div>
+          {serviceSet.map((salon, index) => (
+            <SalonSet key={index} salon={salon} />
+          ))}
         </div>
       </div>
       <Footer />

@@ -1,9 +1,108 @@
 import google from "../../assets/google.png";
 import apple from "../../assets/apple-filled.png";
 import facebook from "../../assets/facebook.png";
-
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const validateInputs = () => {
+    let isValid = true;
+
+    if (!name.trim()) {
+      setError("*Name field is required");
+      isValid = false;
+      alert("Name field is required");
+    } else {
+      setError("");
+    }
+    if (!email.trim()) {
+      setError("*Email field is required");
+      isValid = false;
+      alert("Email field is required");
+    } else if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+    ) {
+      setError("*Invalid email format");
+      isValid = false;
+      alert("Invalid email format");
+    } else {
+      setError("");
+    }
+    if (!password.trim()) {
+      setError("*Password field is required");
+      isValid = false;
+      alert("Password field is required");
+    } else if (!/^(?=.*\d{2,}).{8,}$/.test(password)) {
+      setError(
+        "*Password must be at least 8 characters and contain at least 2 digits"
+      );
+      isValid = false;
+      alert(
+        "Password must be at least 8 characters and contain at least 2 digits"
+      );
+    } else {
+      setError("");
+    }
+    if (!confirmPassword.trim()) {
+      setError("*Confirm password field is required");
+      isValid = false;
+      alert("Confirm password field is required");
+    } else if (password !== confirmPassword) {
+      setError("*Password and confirm password do not match");
+      isValid = false;
+      alert("Password and confirm password do not match");
+    } else {
+      setError("");
+    }
+    return isValid;
+  };
+  const handleChangeName = (event: any) => {
+    setName(event.target.value);
+  };
+  const handleChangeEmail = (event: any) => {
+    setEmail(event.target.value);
+  };
+  const handleChangePassword = (event: any) => {
+    setPassword(event.target.value);
+  };
+  const handleChangeConfirmPassword = (event: any) => {
+    setConfirmPassword(event.target.value);
+  };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault(); 
+    if (validateInputs()) {
+      try {
+        setLoading(true);
+        const url =
+          "https://stylesync-backend-test.onrender.com/customer/customer/register-customer";
+        const response = await axios.post(url, {
+          name,
+          email,
+          password,
+          confirmPassword,
+        });
+
+        console.log(response.data.data);
+        alert("Registered Successfully");
+        navigate("/home");
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   return (
     <div>
       <div>
@@ -50,6 +149,29 @@ export default function Register() {
                       outline: "none",
                     }}
                     type="text"
+                    value={name}
+                    onChange={handleChangeName}
+                  />
+                </label>
+                <label
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: 20,
+                  }}
+                >
+                  Email <br />
+                  <input
+                    style={{
+                      border: 0,
+                      borderBottom: "2px solid",
+                      height: 40,
+                      width: 350,
+                      outline: "none",
+                    }}
+                    type="email"
+                    value={email}
+                    onChange={handleChangeEmail}
                   />
                 </label>
                 <label
@@ -69,6 +191,8 @@ export default function Register() {
                       outline: "none",
                     }}
                     type="password"
+                    value={password}
+                    onChange={handleChangePassword}
                   />
                 </label>
                 <label
@@ -88,6 +212,8 @@ export default function Register() {
                       outline: "none",
                     }}
                     type="password"
+                    value={confirmPassword}
+                    onChange={handleChangeConfirmPassword}
                   />
                 </label>
                 <input
@@ -101,6 +227,7 @@ export default function Register() {
                   }}
                   type="submit"
                   value="Register"
+                  onClick={handleSubmit}
                 />
               </form>
             </div>

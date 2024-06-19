@@ -1,5 +1,6 @@
 import React from "react";
 import nextImage from "../../assets/next.png"
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   image: string;
@@ -8,10 +9,11 @@ type Props = {
   count: number;
 };
 export function ServiceCategories(props: Props) {
+  const navigate = useNavigate();
   return (
     <div
       style={{
-        width: 300,
+        width: "25%",
         height: 350,
         backgroundColor: "white",
         margin: 50,
@@ -37,6 +39,7 @@ export function ServiceCategories(props: Props) {
           display: "flex",
           flexDirection: "row",
         }}
+        onClick={()=>navigate('/available-salons',{state:{serviceType: props.serviceType}})}
       >
         <a
           style={{

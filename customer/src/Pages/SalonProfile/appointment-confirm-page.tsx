@@ -26,7 +26,7 @@ export default function AppointmentConfirm() {
           }}
         >
           <div>
-            <Description />
+            {/* <Description /> */}
           </div>
           <div
             style={{

@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import image from "../../assets/home.jpg";
 
 export function StartingPage() {
+  //const { navigate } = this.props.navigation;
+  const navigate = useNavigate();  
   return (
     <div>
       <div
@@ -42,26 +45,20 @@ export function StartingPage() {
               self – because you deserve nothing but the best. Your journey to
               radiance begins here!
             </p>
-            <div
-              style={{
+              <button style={{
                 backgroundColor: "#2e2528",
                 height: 40,
                 width: 150,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-              }}
-            >
-              <a
-                style={{
-                  color: "#fdfdfd",
-                  textDecoration: "none",
-                }}
-                href="http://localhost:3000/available-salons"
+                color:"white",
+                cursor:"pointer"
+              }} 
+              onClick={()=>navigate('/available-salons',{state:{serviceType: "All Service"}})}
               >
                 Get Started
-              </a>
-            </div>
+              </button>
           </div>
         </div>
         <div

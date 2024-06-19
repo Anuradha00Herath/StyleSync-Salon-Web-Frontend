@@ -1,8 +1,38 @@
+import { useLocation } from "react-router-dom";
 import { NavigationBar } from "../../Components/AvailableSalonComponent/navigation-bar";
 import { Footer } from "../../Components/HomeComponent/footer";
 import background from "../../assets/background.jpg";
+import { SalonSetTwo } from "../../Components/SalonUnderServiceComponents/salon-set-two";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function SearchResultPage() {
+export default function SalonUnderServiceType() {
+  const location = useLocation();
+  const { serviceType } = location.state;
+  const [loading, setLoading] = useState(false);
+  const [serviceSet, setServiceSet] = useState([]);
+
+  const getAllCategories = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        "https://stylesync-backend-test.onrender.com/customer/customer/show-salons-available-services",
+        { params: { serviceType: serviceType } }
+      );
+      console.log(response.data.data);
+      setServiceSet(response.data.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllCategories();
+  }, []);
+
   return (
     <div>
       <div>
@@ -25,7 +55,7 @@ export default function SearchResultPage() {
           }}
         >
           <div>
-            <h1>Hair Service</h1>
+            <h1>{serviceType}</h1>
             <p>
               Enter your dates and choose from 5,000 salons to get your service!
             </p>
@@ -96,28 +126,9 @@ export default function SearchResultPage() {
         }}
       >
         <div style={{ width: "80%" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h4>25 Results Among 5000 Salons</h4>
-          </div>
-          <div
-            style={{ flexWrap: "wrap", display: "flex", flexDirection: "row" }}
-          >
-            {/* <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock />
-            <SalonBlock /> */}
-          </div>
+            {serviceSet.map((salon,index)=>(
+                <SalonSetTwo key={index} salon={salon} />
+            ))}
         </div>
       </div>
       <Footer />

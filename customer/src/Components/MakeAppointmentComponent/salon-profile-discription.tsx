@@ -1,6 +1,14 @@
 import salon from "../../assets/salon.jpg";
+type Props = {
+  name: String,
+  line1: String,
+  line2: String,
+  city: String,
+  contactNo: String,
+  openHours:String
+};
 
-export function Description() {
+export function Description(props:Props) {
   return (
     <div
       style={{
@@ -39,7 +47,7 @@ export function Description() {
               marginLeft: 10,
             }}
           >
-            <h2>Salon Name</h2>
+            <h2>{props.name}</h2>
             <p>
               Small description about their salon. bla bkanskc hja
               jhcjahabxsabch nacsbakjha knasjkcvahk babc nabab khabdcsa
@@ -55,9 +63,9 @@ export function Description() {
           ></div>
           <div>
             <p>19 Followers</p>
-            <p>Address, Street Name, City</p>
-            <p>+94678906784</p>
-            <p>Open hours 09:00 - 17:00</p>
+            <p>{props.line1}, {props.line2}, {props.city}</p>
+            <p>{props.contactNo}</p>
+            <p>{props.openHours}</p>
             <div
               style={{
                 backgroundColor: "black",

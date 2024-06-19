@@ -1,11 +1,14 @@
+import { useLocation } from "react-router-dom";
 import { NavigationBar } from "../../Components/AvailableSalonComponent/navigation-bar";
 import { Footer } from "../../Components/HomeComponent/footer";
-import { Calender } from "../../Components/MakeAppointmentComponent/calender";
 import { Description } from "../../Components/MakeAppointmentComponent/salon-profile-discription";
 import { StaffServiceList } from "../../Components/MakeAppointmentComponent/salon-staff-service-list";
-import { TimeBlocksList } from "../../Components/MakeAppointmentComponent/salon-time-blocks";
+
 
 export default function SalonProfile() {
+  const location = useLocation();
+  const { id, name, line1, line2, city, contactNo, time } = location.state;
+ 
   return (
     <div
       style={{
@@ -28,7 +31,7 @@ export default function SalonProfile() {
           }}
         >
           <div>
-            <Description />
+            <Description name={name} line1={line1} line2={line2} city={city} contactNo={contactNo} openHours={time} />
           </div>
           <div
             style={{
@@ -38,15 +41,12 @@ export default function SalonProfile() {
               width: "100%",
             }}
           >
-            <StaffServiceList />
-            <TimeBlocksList />
-            <Calender/>
+            <StaffServiceList salonId={id}/>
+            
           </div>
-          
         </div>
-        
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

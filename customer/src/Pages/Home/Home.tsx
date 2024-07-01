@@ -6,10 +6,11 @@ import { SendMessage } from "./SendMessage";
 
 import { ServicesPage } from "./ServicesPage";
 import { StartingPage } from "./StartingPage";
+import React from "react";
 
 export default function HomePage() {
   return (
-    <div>
+    <>
       <div>
         <HomeNavigationBar />
       </div>
@@ -36,6 +37,6 @@ export default function HomePage() {
       >
         <Footer />
       </div>
-    </div>
+      </>
   );
 }

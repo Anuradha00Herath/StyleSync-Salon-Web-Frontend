@@ -4,6 +4,7 @@ import facebook from "../../assets/facebook.png";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 export default function Register() {
   const [name, setName] = useState("");

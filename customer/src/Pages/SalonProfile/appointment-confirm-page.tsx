@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { NavigationBar } from "../../Components/AvailableSalonComponent/navigation-bar";
 import { AppointmentDetails } from "../../Components/ConfirmAppointmentComponent/appointment-details";
 import { Footer } from "../../Components/HomeComponent/footer";
+import React from "react";
 
 export default function AppointmentConfirm() {
   const location = useLocation();

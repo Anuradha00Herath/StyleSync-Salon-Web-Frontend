@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { SalonBlock } from "./salon-block";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 interface Salon {
   serviceType: string;

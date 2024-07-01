@@ -3,6 +3,7 @@ import { NavigationBar } from "../../Components/AvailableSalonComponent/navigati
 import { Footer } from "../../Components/HomeComponent/footer";
 import { Description } from "../../Components/MakeAppointmentComponent/salon-profile-discription";
 import { StaffServiceList } from "../../Components/MakeAppointmentComponent/salon-staff-service-list";
+import React from "react";
 
 
 export default function SalonProfile() {

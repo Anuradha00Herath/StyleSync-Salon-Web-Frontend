@@ -2,6 +2,8 @@ import articleImage1 from "../../assets/images 1.png";
 import articleImage2 from "../../assets/image2.png";
 import next from "../../assets/next.png";
 import down from "../../assets/down.png"
+import React from "react";
+
 export function ArticlePage() {
   return (
     <div>

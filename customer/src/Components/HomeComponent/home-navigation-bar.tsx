@@ -57,48 +57,48 @@ export function HomeNavigationBar() {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="lg:hidden fixed top-0 left-0 w-full h-full z-50 bg-white">
+            className="lg:hidden fixed top-0 left-0 w-fit h-full z-50 bg-white">
               <div className="flex w-full flex-col items-start justify-start p-10 h-full">
                 <div className="flex flex-row justify-between items-center w-full">
                     <a href="/" className="text-primary font-semibold text-2xl cursor-pointer">StyleSync</a>
                     <button
-                  className="text-primary focus:outline-none"
-                  onClick={toggleMenu}
-                  
-                >
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+                      className="text-primary focus:outline-none pl-24 pr-4"
+                      onClick={toggleMenu}
+                      
+                    >
+                      <svg
+                        className="w-8 h-8"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                 </div>
                 <div className="text-left text-lg w-full h-full mt-10">
                   <div className="flex flex-col py-10 text-primary" >
                     <ul className="list-none font-medium">
-                      <li className="py-2">
+                      <li className="py-2" onClick={toggleMenu}>
                         <a href="/#home">Home</a>
                       </li>
-                      <li className="py-2">
+                      <li className="py-2" onClick={toggleMenu}>
                         <a href="#service">Services</a>
                       </li>
-                      <li className="py-2">
+                      <li className="py-2" onClick={toggleMenu}>
                         <a href="/#article">Articles</a>
                       </li>
-                      <li className="py-2">
+                      <li className="py-2" onClick={toggleMenu}>
                         <a href="/#faqs">FAQs</a>
                       </li>
-                      <li className="py-2">
+                      <li className="py-2" onClick={toggleMenu}>
                         <a href="/#message">Contact Us</a>
                       </li>
                     </ul>
                     <span className="mt-10 flex flex-col justify-start items-start">
-                      <a href="/login" className="text-primary font-medium text-xl cursor-pointer py-2">Login</a>
-                      <a href="/register" className="text-primary font-medium text-xl cursor-pointer py-2">Register</a>
+                      <a href="/login" className="text-primary font-medium text-xl cursor-pointer py-2" onClick={toggleMenu}>Login</a>
+                      <a href="/register" className="text-primary font-medium text-xl cursor-pointer py-2" onClick={toggleMenu}>Register</a>
                   </span>
                   </div>
                   

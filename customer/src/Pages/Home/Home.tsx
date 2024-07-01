@@ -26,7 +26,7 @@ export default function HomePage() {
       <div id="faqs">
         <FAQsPage />
       </div>
-      <div id="message">
+      {/* <div id="message">
         <SendMessage />
       </div>
       <div
@@ -36,7 +36,7 @@ export default function HomePage() {
         }}
       >
         <Footer />
-      </div>
+      </div> */}
       </>
   );
 }

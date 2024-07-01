@@ -24,11 +24,17 @@ export function TimeBlocksList(props: Props) {
   useEffect(() => {
     const openTime = props.startTime;
     const closeTime = props.closeTime;
-    const duration = parseInt(props.duration, 10)*10; // in minutes
+    const duration = parseInt(props.duration, 10) * 10; // in minutes
+
+    console.log("Open Time:", openTime);
+    console.log("Close Time:", closeTime);
+    console.log("Duration:", duration);
 
     if (openTime && closeTime && duration) {
       const generatedSlots = generateTimeSlots(openTime, closeTime, duration);
       setTimeSlots(generatedSlots);
+
+      console.log("Generated Time Slots:", generatedSlots);
     }
   }, [props.startTime, props.closeTime, props.duration, props.selectedDate]);
 

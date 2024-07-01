@@ -286,7 +286,7 @@ export default function Register() {
                 />
                 <a
                   style={{ color: "black", textDecoration: "none" }}
-                  href="abs"
+                  href="home"
                 >
                   <h4>Continue with Google</h4>
                 </a>

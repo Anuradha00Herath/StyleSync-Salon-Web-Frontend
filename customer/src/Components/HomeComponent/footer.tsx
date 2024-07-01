@@ -2,6 +2,7 @@ import contact from "../../assets/telephone.png";
 import email from "../../assets/email.png";
 import googlePlay from "../../assets/google-play.png";
 import apple from "../../assets/apple.png"
+import React from "react";
 
 export function Footer() {
   return (

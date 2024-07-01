@@ -1,3 +1,5 @@
+import React from "react";
+
 export function FAQsPage() {
   return (
     <div>

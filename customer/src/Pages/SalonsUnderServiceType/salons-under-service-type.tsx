@@ -5,6 +5,7 @@ import background from "../../assets/background.jpg";
 import { SalonSetTwo } from "../../Components/SalonUnderServiceComponents/salon-set-two";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import React from "react";
 
 export default function SalonUnderServiceType() {
   const location = useLocation();

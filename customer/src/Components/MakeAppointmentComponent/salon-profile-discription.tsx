@@ -1,4 +1,6 @@
 import salon from "../../assets/salon.jpg";
+import React from "react";
+
 type Props = {
   name: String,
   line1: String,

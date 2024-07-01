@@ -1,6 +1,7 @@
 import { NavigationBar } from "../../Components/AvailableSalonComponent/navigation-bar";
 import { Footer } from "../../Components/HomeComponent/footer";
 import background from "../../assets/background.jpg";
+import React from "react";
 
 export default function SearchResultPage() {
   return (

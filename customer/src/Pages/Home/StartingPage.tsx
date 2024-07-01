@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import image from "../../assets/home.jpg";
+import React from "react";
 
 export function StartingPage() {
   //const { navigate } = this.props.navigation;

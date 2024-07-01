@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import salon from "../../assets/salon.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 interface SalonBlockProps {
   id: Number;

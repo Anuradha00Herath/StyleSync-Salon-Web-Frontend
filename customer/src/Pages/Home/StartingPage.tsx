@@ -12,35 +12,15 @@ export function StartingPage(props:Props) {
   const navigate = useNavigate();  
   return (
     <div>
-      <div
-        style={{
-          height: 650,
-          flexDirection: "row",
-          display: "flex",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#c9a899",
-            width: "60%",
-            height: "100%",
-          }}
-        >
-          <div
-            style={{
-              margin: 100,
-            }}
-          >
-            <p
-              style={{
-                fontSize: 40,
-                fontWeight: "bold",
-              }}
-            >
+      <div className="h-[100vh] flex flex-col-reverse lg:flex-row justify-start md:justify-between items-center">
+        
+        <div className="bg-[#c9a899] w-full lg:w-[75%] xl:w-[60%] h-[100vh] flex justify-center items-center">
+          <div className="px-4 md:px-10 lg:px-20">
+            <p className="font-bold text-3xl md:text-4xl text-black font-montserrat pt-5 md:py-10 lg:pt-20 text-center lg:text-left">
               Discover Your Signature Style: Find Your Perfect Salon Experience
               for Ultimate Beauty and Wellness.
             </p>
-            <p>
+            <p className="font-normal text-md md:text-lg text-black py-4 lg:py-10 text-center lg:text-left">
               Welcome to our chic online haven where beauty meets
               sophistication! Explore our salon web page for an exclusive
               journey into the world of premier beauty and wellness. From expert
@@ -51,34 +31,17 @@ export function StartingPage(props:Props) {
               self – because you deserve nothing but the best. Your journey to
               radiance begins here!
             </p>
-              <button style={{
-                backgroundColor: "#2e2528",
-                height: 40,
-                width: 150,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color:"white",
-                cursor:"pointer"
-              }} 
-              onClick={()=>navigate('/available-salons',{state:{serviceType: "All Service", userId}})}
-              >
-                Get Started
-              </button>
+            <div className="flex justify-center lg:justify-start">
+            <button className="bg-primary h-10 w-40 cursor-pointer text-white font-normal font-montserrat text-lg rounded-md my-4 md:my-8 lg:my-10"
+              onClick={()=>navigate('/available-salons',{state:{serviceType: "All Service"}})}
+            >
+              Get Started
+            </button>
+          </div>
           </div>
         </div>
-        <div
-          style={{
-            backgroundColor: "#fdfdfd",
-            width: "40%",
-            height: "100%",
-          }}
-        >
-          <img
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
+        <div className="w-full lg:w-[25%] xl:w-[40%] h-[100vh] overflow-hidden">
+          <img className="h-auto lg:h-[100vh] w-full"
             src={image}
             alt="home"
           />

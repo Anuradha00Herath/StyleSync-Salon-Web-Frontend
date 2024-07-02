@@ -4,6 +4,9 @@ import { HomeNavigationBar } from "../../Components/HomeComponent/home-navigatio
 import { ArticlePage } from "./ArticlePage";
 import { FAQsPage } from "./FAQsPage";
 import { SendMessage } from "./SendMessage";
+//import { Footer } from "../../Components/HomeComponent/footer";
+// import { SendMessage } from "./SendMessage";
+
 import { ServicesPage } from "./ServicesPage";
 import { StartingPage } from "./StartingPage";
 import LoginModal from "../../Components/HomeComponent/login-model";
@@ -34,7 +37,7 @@ export default function HomePage() {
       <div id="faqs">
         <FAQsPage />
       </div>
-      <div id="message">
+      {/* <div id="message">
         <SendMessage />
       </div>
       <div
@@ -44,7 +47,7 @@ export default function HomePage() {
         }}
       >
         <Footer />
-      </div>
+      </div> */}
       <LoginModal open={isLoginModalOpen} setOpen={setLoginModalOpen} handleClose={handleCloseLoginModal} setUserId={setUserId}/>
     </>
   );

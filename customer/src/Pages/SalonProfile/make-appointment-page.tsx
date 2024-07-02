@@ -17,7 +17,7 @@ export default function SalonProfile() {
       }}
     >
       <div>
-        <NavigationBar />
+        <NavigationBar userId={userId}/>
       </div>
       <div
         style={{

@@ -33,7 +33,7 @@ export function StartingPage(props:Props) {
             </p>
             <div className="flex justify-center lg:justify-start">
             <button className="bg-primary h-10 w-40 cursor-pointer text-white font-normal font-montserrat text-lg rounded-md my-4 md:my-8 lg:my-10"
-              onClick={()=>navigate('/available-salons',{state:{serviceType: "All Service"}})}
+              onClick={()=>navigate('/available-salons',{state:{serviceType: "All Service",userId}})}
             >
               Get Started
             </button>

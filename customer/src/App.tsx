@@ -9,6 +9,7 @@ import SearchResultPage from './Pages/SearchResult/search-result';
 import AppointmentConfirm from './Pages/SalonProfile/appointment-confirm-page';
 import SalonProfile from './Pages/SalonProfile/make-appointment-page';
 import SalonUnderServiceType from './Pages/SalonsUnderServiceType/salons-under-service-type';
+import AppointmentSuccessful from './Pages/SalonProfile/appointment-successfull';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/make-appointment" element={<SalonProfile/>}/>
         <Route path="/confirm-appointment" element={<AppointmentConfirm/>}/>
         <Route path="/available-salons-under-service-type" element={<SalonUnderServiceType/>}/>
+        <Route path="/appointment-successful" element={<AppointmentSuccessful/>}/>
       </Routes>
     </Router>
   );

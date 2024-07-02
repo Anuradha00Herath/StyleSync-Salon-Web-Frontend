@@ -7,7 +7,7 @@ export default function SearchResultPage() {
   return (
     <div>
       <div>
-        <NavigationBar />
+        {/* <NavigationBar /> */}
       </div>
       <div
         style={{

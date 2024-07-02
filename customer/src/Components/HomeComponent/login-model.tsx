@@ -21,10 +21,11 @@ interface LoginModalProps {
   open: boolean;
   handleClose: () => void;
   setOpen: any;
-  setUserId:any
+  setUserId:any;
+  userId:any;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ open, handleClose, setOpen, setUserId }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ open, handleClose, setOpen, setUserId, userId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -74,6 +75,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ open, handleClose, setOpen, set
         console.log(response.data.data);
         setUserId(response.data.data.id);
         alert("Logged in successfully");
+        setIsLogin(true);
         setOpen(false);
       } catch (error) {
         console.error("Error logging in:", error);
@@ -159,6 +161,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ open, handleClose, setOpen, set
         console.log(response.data.data);
         setUserId(response.data.data.id);
         alert("Registered Successfully");
+        setIsLogin(true);
         setOpen(false)
       } catch (error) {
         console.error(error);

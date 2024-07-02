@@ -12,9 +12,10 @@ type Props = {
   duration: string;
   selectedDate: Date | null;
   slotStart: string | null;
-  setSlotStart:React.Dispatch<React.SetStateAction<string | null>>;
+  setSlotStart: React.Dispatch<React.SetStateAction<string | null>>;
   slotEnd: string | null;
   setSlotEnd: React.Dispatch<React.SetStateAction<string | null>>;
+  booked: { startTime: string; endTime: string }[];
 };
 
 export function TimeBlocksList(props: Props) {
@@ -25,20 +26,21 @@ export function TimeBlocksList(props: Props) {
     const openTime = props.startTime;
     const closeTime = props.closeTime;
     const duration = parseInt(props.duration, 10) * 10; // in minutes
+    console.log("Booked", props.booked);
 
     console.log("Open Time:", openTime);
     console.log("Close Time:", closeTime);
     console.log("Duration:", duration);
 
     if (openTime && closeTime && duration) {
-      const generatedSlots = generateTimeSlots(openTime, closeTime, duration);
+      const generatedSlots = generateTimeSlots(openTime, closeTime, duration, props.booked);
       setTimeSlots(generatedSlots);
 
       console.log("Generated Time Slots:", generatedSlots);
     }
-  }, [props.startTime, props.closeTime, props.duration, props.selectedDate]);
+  }, [props.startTime, props.closeTime, props.duration, props.selectedDate, props.booked]);
 
-  function generateTimeSlots(openTime: string, closeTime: string, duration: number): TimeSlot[] {
+  function generateTimeSlots(openTime: string, closeTime: string, duration: number, booked: { startTime: string; endTime: string }[]): TimeSlot[] {
     const periods = ["Morning", "Afternoon", "Evening"];
 
     function timeToMinutes(time: string): number {
@@ -50,6 +52,14 @@ export function TimeBlocksList(props: Props) {
       const hours = Math.floor(minutes / 60);
       const mins = minutes % 60;
       return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
+    }
+
+    function isTimeSlotBooked(startMinutes: number, endMinutes: number, bookedSlots: { startTime: string; endTime: string }[]): boolean {
+      return bookedSlots.some(slot => {
+        const slotStart = timeToMinutes(slot.startTime);
+        const slotEnd = timeToMinutes(slot.endTime);
+        return (startMinutes < slotEnd && endMinutes > slotStart);
+      });
     }
 
     const openMinutes = timeToMinutes(openTime);
@@ -79,11 +89,12 @@ export function TimeBlocksList(props: Props) {
       const isToday = props.selectedDate && props.selectedDate.toDateString() === now.toDateString();
       const isPast = props.selectedDate && props.selectedDate < new Date(now.toDateString());
       const isTimePast = isToday && currentMinutes < currentDateMinutes;
+      const isBooked = isTimeSlotBooked(currentMinutes, endMinutes, booked);
 
       const timeSlot: TimeSlot = {
         time: `${minutesToTime(currentMinutes)} - ${minutesToTime(endMinutes)}`,
         period: period,
-        available: !isPast && !isTimePast,
+        available: !isPast && !isTimePast && !isBooked,
       };
 
       slots.push(timeSlot);

@@ -2,8 +2,15 @@ import React from "react";
 import "../AvailableSalonComponent/navigation-bar.css";
 import english from "../../assets/english.png";
 import help from "../../assets/help.png";
+import { useNavigate } from "react-router-dom";
 
-export function NavigationBar() {
+interface Props{
+  userId:any;
+}
+
+export function NavigationBar(props:Props) {
+
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -21,10 +28,10 @@ export function NavigationBar() {
         <div className="navbar-center">
           <ul className="nav-links">
           <li>
-              <a href="http://localhost:3000/home#home">Home</a>
+              <text onClick={()=>navigate("/")}>Home</text>
             </li>
           <li>
-              <a href="http://localhost:3000/home#service">Categories</a>
+              <text onClick={()=>navigate("/")}>Categories</text>
             </li>
             <li>
               <a href="/">LKR</a>

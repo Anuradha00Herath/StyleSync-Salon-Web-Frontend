@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type AppointmentDetailsProps = {
   date: Date | string;
@@ -28,6 +29,7 @@ export function AppointmentDetails({
   const [contactNumber, setContactNumber] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const currentDate = new Date();
   console.log(currentDate);
@@ -47,7 +49,7 @@ export function AppointmentDetails({
       console.log(response.data.data[0]);
       setName(response.data.data[0].name);
       setEmail(response.data.data[0].email);
-      setContactNumber(response.data.data[0].contactNumber);
+      setContactNumber(response.data.data[0].contactNo);
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +75,11 @@ export function AppointmentDetails({
           bookingTime: currentDate.toISOString()
         }
       );
-      console.log(response.data);
+      console.log(response.data.status);
+      if(response.data.status===200){
+        navigate("/appointment-successful",{state:userId});
+      }
+
     } catch (error) {
       console.log(error);
     }

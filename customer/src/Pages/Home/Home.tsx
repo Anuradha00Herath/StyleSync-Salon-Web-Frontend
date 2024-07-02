@@ -10,15 +10,20 @@ import { SendMessage } from "./SendMessage";
 import { ServicesPage } from "./ServicesPage";
 import { StartingPage } from "./StartingPage";
 import LoginModal from "../../Components/HomeComponent/login-model";
+import { useLocation } from "react-router-dom";
 
 
 export default function HomePage() {
   const [isLoginModalOpen, setLoginModalOpen] = useState(true);
-  const [userId,setUserId] = useState();
+  const [userId,setUserId] = useState(null);
+  console.log(userId);
+  
+
 
   const handleCloseLoginModal = () => {
     setLoginModalOpen(false);
   };
+
 
   return (
     <>
@@ -48,7 +53,7 @@ export default function HomePage() {
       >
         <Footer />
       </div> */}
-      <LoginModal open={isLoginModalOpen} setOpen={setLoginModalOpen} handleClose={handleCloseLoginModal} setUserId={setUserId}/>
+      <LoginModal open={isLoginModalOpen} setOpen={setLoginModalOpen} handleClose={handleCloseLoginModal} setUserId={setUserId} userId={userId}/>
     </>
   );
 }

@@ -37,7 +37,7 @@ export default function SalonUnderServiceType() {
   return (
     <div>
       <div>
-        <NavigationBar />
+        <NavigationBar userId={userId}/>
       </div>
       <div
         style={{

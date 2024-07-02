@@ -37,7 +37,7 @@ export default function AvailableSalonPage() {
 
   return (
     <div>
-      <NavigationBar />
+      <NavigationBar userId={userId} />
       <div
         style={{
           backgroundImage: `url(${background})`,

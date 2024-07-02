@@ -25,6 +25,7 @@ export function StaffServiceList(props: Props) {
   const [slotStart, setSlotStart] = useState<string | null>(" ");
   const [slotEnd, setSlotEnd] = useState<string | null>(" ");
   const [staffName,setStaffName] = useState<string | null>(" ");
+  const [booked,setBooked] = useState([]);
   const userId = props.userId;
 
   const getAllCategories = async () => {
@@ -66,10 +67,11 @@ export function StaffServiceList(props: Props) {
 
     setLoading(true);
     try {
+      console.log("selected date", date);
       const dayName = getDayName(date);
       const response = await axios.get(
         "https://stylesync-backend-test.onrender.com/customer/customer/staff-available-time",
-        { params: { staffId: staffId, serviceId: serviceId, dayName: dayName } }
+        { params: { staffId: staffId, serviceId: serviceId, dayName: dayName, date } }
       );
       setStartTime(response.data.data[0].openHour[0]);
       setCloseTime(response.data.data[0].closeHour[0]);
@@ -79,6 +81,8 @@ export function StaffServiceList(props: Props) {
       console.log("Start Time:", response.data.data[0].openHour[0]);
       console.log("Close Time:", response.data.data[0].closeHour[0]);
       console.log("Duration:", response.data.data[0].duration[0]);
+      setBooked(response.data.data2);
+      console.log("Breaks",response.data.data3)
     } catch (error) {
       console.log(error);
     } finally {
@@ -234,7 +238,7 @@ export function StaffServiceList(props: Props) {
           </div>
         </div>
       </div>
-      <TimeBlocksList startTime={startTime} closeTime={closeTime} duration={duration} selectedDate={selectedDate} slotStart={slotStart} setSlotStart={setSlotStart} slotEnd={slotEnd} setSlotEnd={setSlotEnd}/>
+      <TimeBlocksList startTime={startTime} closeTime={closeTime} duration={duration} selectedDate={selectedDate} slotStart={slotStart} setSlotStart={setSlotStart} slotEnd={slotEnd} setSlotEnd={setSlotEnd} booked={booked}/>
       <Calender selectedDate={selectedDate} setSelectedDate={setSelectedDate} staffId={staffId} serviceId={serviceId} serviceName={serviceName} price={price} staffName= {staffName} slotStart={slotStart} slotEnd={slotEnd} userId={userId}/>
     </div>
   );

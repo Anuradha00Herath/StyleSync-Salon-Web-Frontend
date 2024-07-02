@@ -13,7 +13,7 @@ export default function AppointmentConfirm() {
   return (
     <div style={{ backgroundColor: "#f8f5f3" }}>
       <div>
-        <NavigationBar />
+        <NavigationBar userId={userId}/>
       </div>
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <div style={{ width: "70%" }}>

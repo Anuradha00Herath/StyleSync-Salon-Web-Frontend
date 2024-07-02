@@ -159,15 +159,14 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
                 })
               }
             >
-              <a
+              <text
                 style={{
                   fontSize: 12,
                   color: "white",
                 }}
-                href="http://localhost:3000/make-appointment"
               >
                 Book now
-              </a>
+              </text>
             </div>
           </div>
         </div>

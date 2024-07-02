@@ -11,9 +11,10 @@ interface Salon {
 
 interface MyComponentProps {
   salon: Salon;
+  userId:any
 }
 
-export const SalonSetTwo: React.FC<MyComponentProps> = ({ salon }) => {
+export const SalonSetTwo: React.FC<MyComponentProps> = ({ salon , userId}) => {
   const [loading, setLoading] = useState(false);
   const [serviceBlock, setServiceBlock] = useState([]);
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ export const SalonSetTwo: React.FC<MyComponentProps> = ({ salon }) => {
         }}
       >
         {serviceBlock.map((block, index: React.Key) => (
-          <SalonBlock block={block} key={index} />
+          <SalonBlock block={block} key={index} userId={userId}/>
         ))}
       </div>
     </div>

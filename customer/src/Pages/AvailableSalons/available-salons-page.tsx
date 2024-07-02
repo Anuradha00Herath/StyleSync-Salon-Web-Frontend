@@ -8,9 +8,10 @@ import { SalonSet } from "../../Components/AvailableSalonComponent/salon-set";
 
 export default function AvailableSalonPage() {
   const location = useLocation();
-  const { serviceType } = location.state;
+  const { serviceType, userId } = location.state;
   const [serviceSet, setServiceSet] = useState([]);
   const [loading, setLoading] = useState(false);
+
 
   const getAllCategories = async () => {
     setLoading(true);
@@ -27,6 +28,8 @@ export default function AvailableSalonPage() {
       setLoading(false);
     }
   };
+
+  
 
   useEffect(() => {
     getAllCategories();
@@ -126,7 +129,7 @@ export default function AvailableSalonPage() {
       >
         <div style={{ width: "80%" }}>
           {serviceSet.map((salon, index) => (
-            <SalonSet key={index} salon={salon} />
+            <SalonSet key={index} salon={salon} userId={userId} />
           ))}
         </div>
       </div>

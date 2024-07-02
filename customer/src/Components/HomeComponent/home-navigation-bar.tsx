@@ -5,6 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export function HomeNavigationBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+
+  const handleCloseLoginModal = () => {
+    setLoginModalOpen(false);
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -40,7 +45,7 @@ export function HomeNavigationBar() {
         
         <div className="flex justify-end items-center">
         <div className="bg-primary h-35px w-[100px] items-center justify-center">
-          <Link to='/login' className="text-white text-xl font-medium py-3 px-4">Login</Link>
+          <Link to='/home' className="text-white text-xl font-medium py-3 px-4">Login</Link>
             
           </div>
           <div className="bg-white h-[35px] flex justify-center items-center rounded-md">

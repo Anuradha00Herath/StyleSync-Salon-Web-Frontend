@@ -5,6 +5,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import { GoogleLogin } from '@react-oauth/google';
+
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -265,7 +267,7 @@ export default function Register() {
                 flexDirection: "column",
               }}
             >
-              <div
+              {/* <div
                 style={{
                   width: 350,
                   height: 60,
@@ -291,7 +293,16 @@ export default function Register() {
                 >
                   <h4>Continue with Google</h4>
                 </a>
-              </div>
+              </div> */}
+               <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+                width={350}
+              />
               <div
                 style={{
                   width: 350,

@@ -5,9 +5,14 @@ import hairImage from "../../assets/hair.png";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-export function ServicesPage() {
+interface Props {
+  userId:any
+}
+
+export function ServicesPage(props:Props) {
   const [loading, setLoading] = useState(false);
   const [serviceTypes, setServiceTypes] = useState([]);
+  const userId = props.userId;
   
   const getAllCategories = async () => {
     setLoading(true);
@@ -66,6 +71,7 @@ export function ServicesPage() {
             imgAlt={"hair"}
             serviceType={serviceType}
             count={524}
+            userId={userId}
           />
           ))}
         </div>

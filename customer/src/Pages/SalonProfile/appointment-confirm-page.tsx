@@ -3,10 +3,12 @@ import { NavigationBar } from "../../Components/AvailableSalonComponent/navigati
 import { AppointmentDetails } from "../../Components/ConfirmAppointmentComponent/appointment-details";
 import { Footer } from "../../Components/HomeComponent/footer";
 import React from "react";
+import { Description } from "../../Components/MakeAppointmentComponent/salon-profile-discription";
 
 export default function AppointmentConfirm() {
   const location = useLocation();
-  const { date, staffId, serviceId, serviceName, price,staffName, slotStart, slotEnd } = location.state;
+  const { date, staffId, serviceId, serviceName, price,staffName, slotStart, slotEnd, userId } = location.state;
+  console.log(userId);
   
   return (
     <div style={{ backgroundColor: "#f8f5f3" }}>
@@ -28,6 +30,7 @@ export default function AppointmentConfirm() {
               staffName={staffName}
               slotStart={slotStart}
               slotEnd={slotEnd}
+              userId={userId}
             />
           </div>
         </div>

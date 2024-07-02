@@ -7,6 +7,7 @@ type Props = {
   imgAlt: string;
   serviceType: string;
   count: number;
+  userId:any
 };
 export function ServiceCategories(props: Props) {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export function ServiceCategories(props: Props) {
           display: "flex",
           flexDirection: "row",
         }}
-        onClick={()=>navigate('/available-salons',{state:{serviceType: props.serviceType}})}
+        onClick={()=>navigate('/available-salons',{state:{serviceType: props.serviceType, userId:props.userId}})}
       >
         <a
           style={{

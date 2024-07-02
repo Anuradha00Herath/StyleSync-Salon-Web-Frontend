@@ -6,6 +6,7 @@ import { Calender } from "../../Components/MakeAppointmentComponent/calender";
 
 type Props = {
   salonId: Number;
+  userId:any;
 };
 
 export function StaffServiceList(props: Props) {
@@ -24,6 +25,7 @@ export function StaffServiceList(props: Props) {
   const [slotStart, setSlotStart] = useState<string | null>(" ");
   const [slotEnd, setSlotEnd] = useState<string | null>(" ");
   const [staffName,setStaffName] = useState<string | null>(" ");
+  const userId = props.userId;
 
   const getAllCategories = async () => {
     setLoading(true);
@@ -228,7 +230,7 @@ export function StaffServiceList(props: Props) {
         </div>
       </div>
       <TimeBlocksList startTime={startTime} closeTime={closeTime} duration={duration} selectedDate={selectedDate} slotStart={slotStart} setSlotStart={setSlotStart} slotEnd={slotEnd} setSlotEnd={setSlotEnd}/>
-      <Calender selectedDate={selectedDate} setSelectedDate={setSelectedDate} staffId={staffId} serviceId={serviceId} serviceName={serviceName} price={price} staffName= {staffName} slotStart={slotStart} slotEnd={slotEnd}/>
+      <Calender selectedDate={selectedDate} setSelectedDate={setSelectedDate} staffId={staffId} serviceId={serviceId} serviceName={serviceName} price={price} staffName= {staffName} slotStart={slotStart} slotEnd={slotEnd} userId={userId}/>
     </div>
   );
 }

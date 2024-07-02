@@ -2,8 +2,13 @@ import { useNavigate } from "react-router-dom";
 import image from "../../assets/home.jpg";
 import React from "react";
 
-export function StartingPage() {
+interface Props{
+  userId: any
+}
+
+export function StartingPage(props:Props) {
   //const { navigate } = this.props.navigation;
+  const userId = props.userId;
   const navigate = useNavigate();  
   return (
     <div>
@@ -56,7 +61,7 @@ export function StartingPage() {
                 color:"white",
                 cursor:"pointer"
               }} 
-              onClick={()=>navigate('/available-salons',{state:{serviceType: "All Service"}})}
+              onClick={()=>navigate('/available-salons',{state:{serviceType: "All Service", userId}})}
               >
                 Get Started
               </button>

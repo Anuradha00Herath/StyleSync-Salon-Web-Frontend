@@ -13,9 +13,10 @@ type Props = {
   staffName: string | null;
   slotStart: string | null;
   slotEnd: string | null;
+  userId: any
 };
 
-export function Calender({ selectedDate, setSelectedDate, staffId, serviceId, serviceName, price, staffName, slotStart, slotEnd }: Props) {
+export function Calender({ selectedDate, setSelectedDate, staffId, serviceId, serviceName, price, staffName, slotStart, slotEnd, userId }: Props) {
   const navigate = useNavigate();
   return (
     <div
@@ -68,7 +69,7 @@ export function Calender({ selectedDate, setSelectedDate, staffId, serviceId, se
               textDecoration: "none",
               cursor: "pointer"
           }}
-          onClick={()=>navigate('/confirm-appointment',{state:{date:selectedDate,staffId:staffId,serviceId:serviceId, serviceName:serviceName, price:price,staffName:staffName, slotStart:slotStart, slotEnd:slotEnd}})}
+          onClick={()=>navigate('/confirm-appointment',{state:{date:selectedDate,staffId:staffId,serviceId:serviceId, serviceName:serviceName, price:price,staffName:staffName, slotStart:slotStart, slotEnd:slotEnd,userId:userId}})}
         >
             Book Time Slot
         </button>

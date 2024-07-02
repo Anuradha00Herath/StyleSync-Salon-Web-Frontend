@@ -8,7 +8,7 @@ import React from "react";
 
 export default function SalonProfile() {
   const location = useLocation();
-  const { id, name, line1, line2, city, contactNo, time } = location.state;
+  const { id, name, line1, line2, city, contactNo, time, userId } = location.state;
  
   return (
     <div
@@ -42,7 +42,7 @@ export default function SalonProfile() {
               width: "100%",
             }}
           >
-            <StaffServiceList salonId={id}/>
+            <StaffServiceList salonId={id} userId={userId}/>
             
           </div>
         </div>

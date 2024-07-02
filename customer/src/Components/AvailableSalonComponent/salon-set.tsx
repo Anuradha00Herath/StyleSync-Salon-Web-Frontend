@@ -9,11 +9,15 @@ interface Salon {
   // Include other properties of the salon object as needed
 }
 
-interface MyComponentProps {
+interface Props {
   salon: Salon;
+  userId:any;
 }
 
-export const SalonSet: React.FC<MyComponentProps> = ({ salon }) => {
+export const SalonSet = (props:Props) => {
+
+  const salon = props.salon;
+  const userId = props.userId;
   const [loading, setLoading] = useState(false);
   const [serviceBlock, setServiceBlock] = useState([]);
   const navigate = useNavigate();
@@ -51,7 +55,7 @@ export const SalonSet: React.FC<MyComponentProps> = ({ salon }) => {
         }}
       >
         <h4>Salons in {salon.serviceType}</h4>
-        <div onClick={()=>navigate('/available-salons-under-service-type',{state:{serviceType: salon.serviceType}})}>
+        <div onClick={()=>navigate('/available-salons-under-service-type',{state:{serviceType: salon.serviceType, userId}})}>
           <a
             style={{
               color: "black",
@@ -70,7 +74,7 @@ export const SalonSet: React.FC<MyComponentProps> = ({ salon }) => {
         }}
       >
         {serviceBlock.map((block, index: React.Key) => (
-          <SalonBlock block={block} key={index} />
+          <SalonBlock block={block} key={index} userId={userId}/>
         ))}
       </div>
     </div>

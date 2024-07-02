@@ -14,9 +14,10 @@ interface SalonBlockProps {
 }
 interface MyComponentProps {
   block: SalonBlockProps;
+  userId: any;
 }
 
-export const SalonBlock: React.FC<MyComponentProps> = ({ block }) => {
+export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -128,7 +129,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block }) => {
                   fontSize: 12,
                   color: "white",
                 }}
-                href="http://localhost:3000"
+                href="/"
               >
                 Follow
               </a>
@@ -152,7 +153,8 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block }) => {
                     line2: block.line2,
                     city: block.city,
                     contactNo: block.contactNo,
-                    time:times
+                    time:times,
+                    userId
                   },
                 })
               }

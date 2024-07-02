@@ -9,7 +9,7 @@ import React from "react";
 
 export default function SalonUnderServiceType() {
   const location = useLocation();
-  const { serviceType } = location.state;
+  const { serviceType, userId } = location.state;
   const [loading, setLoading] = useState(false);
   const [serviceSet, setServiceSet] = useState([]);
 
@@ -128,7 +128,7 @@ export default function SalonUnderServiceType() {
       >
         <div style={{ width: "80%" }}>
             {serviceSet.map((salon,index)=>(
-                <SalonSetTwo key={index} salon={salon} />
+                <SalonSetTwo key={index} salon={salon} userId={userId}/>
             ))}
         </div>
       </div>

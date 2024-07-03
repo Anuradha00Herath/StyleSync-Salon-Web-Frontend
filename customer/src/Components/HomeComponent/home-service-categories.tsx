@@ -11,47 +11,22 @@ type Props = {
 export function ServiceCategories(props: Props) {
   const navigate = useNavigate();
   return (
-    <div
-      style={{
-        width: "25%",
-        height: 350,
-        backgroundColor: "white",
-        margin: 50,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <img
-        style={{
-          width: 70,
-          height: 70,
-          marginBottom: 30,
-        }}
+    <div className="bg-white my-12 mx-4 flex flex-col justify-center items-center w-56 pb-6 pt-8 rounded-lg">
+      <img className="w-16 h-16 mb-9"
         src={props.image}
         alt={props.imgAlt}
       />
-      <p>{props.serviceType}</p>
-      <p>{props.count} Salons Available</p>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-        }}
-        onClick={()=>navigate('/available-salons',{state:{serviceType: props.serviceType}})}
-      >
-        <a
-          style={{
-            color: "#844704",
-            textDecoration: "none",
-          }}
-          href="http://localhost:3000/available-salons"
-        >
-          Make an appointment
-        </a>
-        <img src={nextImage} alt="click here"/>
+      <p className="text-lg font-semibold text-black">{props.serviceType}</p>
+      <p className="text-lg font-normal text-black py-2">{props.count} Salons Available</p>
+      
+      <div className="w-[90%] mx-auto py-6">
+      <button className="bg-primary py-2 w-full cursor-pointer text-white hover:text-primary font-normal rounded-md hover:bg-[#c9a899] hover:font-semibold text-sm hover:text-md font-montserrat "
+              onClick={()=>navigate('/available-salons',{state:{serviceType: props.serviceType}})}
+            >
+              <a href="http://localhost:3000/available-salons">Make an appointment</a>
+      </button>
       </div>
+      
     </div>
   );
 }

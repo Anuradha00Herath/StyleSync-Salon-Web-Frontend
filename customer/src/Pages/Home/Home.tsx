@@ -2,7 +2,7 @@
 import { HomeNavigationBar } from "../../Components/HomeComponent/home-navigation-bar";
 import { ArticlePage } from "./ArticlePage";
 import { FAQsPage } from "./FAQsPage";
-// import { SendMessage } from "./SendMessage";
+import { SendMessage } from "./SendMessage";
 
 import { ServicesPage } from "./ServicesPage";
 import { StartingPage } from "./StartingPage";
@@ -20,16 +20,16 @@ export default function HomePage() {
       <div id="service">
         <ServicesPage />
       </div>
-      <div id="article">
+      {/* <div id="article">
         <ArticlePage />
-      </div>
+      </div> */}
       <div id="faqs">
         <FAQsPage />
       </div>
-      {/* <div id="message">
+      <div id="message">
         <SendMessage />
       </div>
-      <div
+      {/* <div
         id="footer"
         style={{
           marginTop: 70,

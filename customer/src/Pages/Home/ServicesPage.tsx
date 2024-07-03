@@ -1,4 +1,5 @@
 import { ServiceCategories } from "../../Components/HomeComponent/home-service-categories";
+import CustomHeading from "../../Components/common/CustomHeading";
 import hairImage from "../../assets/hair.png";
 // import nailImage from "../../assets/nail.png";
 // import facialImage from "../../assets/facial.png";
@@ -30,36 +31,11 @@ export function ServicesPage() {
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <p
-          style={{
-            fontSize: 30,
-            fontWeight: "bold",
-          }}
-        >
-          Our Services
-        </p>
+      <div className="flex justify-center items-center">
+        <CustomHeading title="Our Services"/> 
       </div>
-      <div
-        style={{
-          backgroundColor: "#f8f5f3",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            width: "80%",
-            //justifyContent: "space-between",
-          }}
-        >
+      <div className="bg-[#c9a899] items-center flex justify-center">
+        <div className="items-center justify-center flex-wrap flex w-[90%] md:w-[90%]">
           {serviceTypes.map((serviceType: any, index:React.Key)=>(
             <ServiceCategories
             image={hairImage}

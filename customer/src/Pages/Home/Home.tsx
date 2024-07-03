@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Footer } from "../../Components/HomeComponent/footer";
+//import { Footer } from "../../Components/HomeComponent/footer";
 import { HomeNavigationBar } from "../../Components/HomeComponent/home-navigation-bar";
-import { ArticlePage } from "./ArticlePage";
+//import { ArticlePage } from "./ArticlePage";
 import { FAQsPage } from "./FAQsPage";
 import { SendMessage } from "./SendMessage";
 //import { Footer } from "../../Components/HomeComponent/footer";
-// import { SendMessage } from "./SendMessage";
 
 import { ServicesPage } from "./ServicesPage";
 import { StartingPage } from "./StartingPage";
 import LoginModal from "../../Components/HomeComponent/login-model";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 
 
 export default function HomePage() {
@@ -36,16 +35,16 @@ export default function HomePage() {
       <div id="service">
         <ServicesPage userId={userId}/>
       </div>
-      <div id="article">
+      {/* <div id="article">
         <ArticlePage />
-      </div>
+      </div> */}
       <div id="faqs">
         <FAQsPage />
       </div>
-      {/* <div id="message">
+      <div id="message">
         <SendMessage />
       </div>
-      <div
+      {/* <div
         id="footer"
         style={{
           marginTop: 70,

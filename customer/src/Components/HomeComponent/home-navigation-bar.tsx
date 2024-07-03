@@ -19,12 +19,12 @@ export function HomeNavigationBar() {
     <nav className="mx-[4%] w-[92%] max-w-[1900px]  fixed  md:top-5 top-3 z-[999] bg-[#2E2528] h-[70px] rounded-[8px] px-5 sm:px-8 flex flex-row items-center py-4 justify-between">
       <div className="w-full hidden lg:flex justify-between items-center  mx-10">
         <div >
-          <a href="/" className="text-white font-semibold text-2xl">
+          <a href="/" className="text-white font-semibold text-2xl font-montserrat">
             StyleSync
           </a>
         </div>
         <div>
-          <ul className="flex justify-between items-center gap-4 xl:gap-12 text-white text-xl font-medium">
+          <ul className="flex justify-between items-center gap-4 xl:gap-12 text-white text-lg font-medium font-montserrat">
             <li>
               <a href="/#home">Home</a>
             </li>
@@ -45,11 +45,11 @@ export function HomeNavigationBar() {
         
         <div className="flex justify-end items-center">
         <div className="bg-primary h-35px w-[100px] items-center justify-center">
-          <Link to='/home' className="text-white text-xl font-medium py-3 px-4">Login</Link>
+          <Link to='/home' className="text-white text-lg font-medium py-3 px-4 font-montserrat">Login</Link>
             
           </div>
           <div className="bg-white h-[35px] flex justify-center items-center rounded-md">
-            <Link to='/register' className="text-[#232528] font-medium text-xl py-3 px-4">Register</Link>
+            <Link to='/register' className="text-[#232528] font-medium text-lg py-3 px-4 font-montserrat">Register</Link>
           </div>
         </div>
         </div>

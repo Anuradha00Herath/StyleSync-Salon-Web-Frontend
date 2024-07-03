@@ -7,16 +7,39 @@ type Props = {
   selectedDate: Date | null;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
   staffId: Number | null;
-  serviceId:Number | null;
-  serviceName:string | null;
-  price:Number| null;
+  serviceId: Number | null;
+  serviceName: string | null;
+  price: Number | null;
   staffName: string | null;
   slotStart: string | null;
   slotEnd: string | null;
-  userId: any
+  userId: any;
+  name: String;
+  line1: String;
+  line2: String;
+  city: String;
+  contactNo: String;
+  openHours: String;
 };
 
-export function Calender({ selectedDate, setSelectedDate, staffId, serviceId, serviceName, price, staffName, slotStart, slotEnd, userId }: Props) {
+export function Calender({
+  selectedDate,
+  setSelectedDate,
+  staffId,
+  serviceId,
+  serviceName,
+  price,
+  staffName,
+  slotStart,
+  slotEnd,
+  userId,
+  name,
+  line1,
+  line2,
+  city,
+  contactNo,
+  openHours,
+}: Props) {
   const navigate = useNavigate();
   return (
     <div
@@ -66,12 +89,32 @@ export function Calender({ selectedDate, setSelectedDate, staffId, serviceId, se
             backgroundColor: "black",
             marginTop: 20,
             color: "white",
-              textDecoration: "none",
-              cursor: "pointer"
+            textDecoration: "none",
+            cursor: "pointer",
           }}
-          onClick={()=>navigate('/confirm-appointment',{state:{date:selectedDate,staffId:staffId,serviceId:serviceId, serviceName:serviceName, price:price,staffName:staffName, slotStart:slotStart, slotEnd:slotEnd,userId:userId}})}
+          onClick={() =>
+            navigate("/confirm-appointment", {
+              state: {
+                date: selectedDate,
+                staffId: staffId,
+                serviceId: serviceId,
+                serviceName: serviceName,
+                price: price,
+                staffName: staffName,
+                slotStart: slotStart,
+                slotEnd: slotEnd,
+                userId: userId,
+                name: name,
+                line1: line1,
+                line2: line2,
+                city: city,
+                contactNo: contactNo,
+                openHours: openHours,
+              },
+            })
+          }
         >
-            Book Time Slot
+          Book Time Slot
         </button>
       </div>
     </div>

@@ -5,11 +5,11 @@ import { Description } from "../../Components/MakeAppointmentComponent/salon-pro
 import { StaffServiceList } from "../../Components/MakeAppointmentComponent/salon-staff-service-list";
 import React from "react";
 
-
 export default function SalonProfile() {
   const location = useLocation();
-  const { id, name, line1, line2, city, contactNo, time, userId } = location.state;
- 
+  const { id, name, line1, line2, city, contactNo, time, userId } =
+    location.state;
+
   return (
     <div
       style={{
@@ -17,7 +17,7 @@ export default function SalonProfile() {
       }}
     >
       <div>
-        <NavigationBar userId={userId}/>
+        <NavigationBar userId={userId} />
       </div>
       <div
         style={{
@@ -32,7 +32,14 @@ export default function SalonProfile() {
           }}
         >
           <div>
-            <Description name={name} line1={line1} line2={line2} city={city} contactNo={contactNo} openHours={time} />
+            <Description
+              name={name}
+              line1={line1}
+              line2={line2}
+              city={city}
+              contactNo={contactNo}
+              openHours={time}
+            />
           </div>
           <div
             style={{
@@ -42,8 +49,16 @@ export default function SalonProfile() {
               width: "100%",
             }}
           >
-            <StaffServiceList salonId={id} userId={userId}/>
-            
+            <StaffServiceList
+              salonId={id}
+              userId={userId}
+              name={name}
+              line1={line1}
+              line2={line2}
+              city={city}
+              contactNo={contactNo}
+              openHours={time}
+            />
           </div>
         </div>
       </div>

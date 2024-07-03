@@ -6,7 +6,13 @@ import { Calender } from "../../Components/MakeAppointmentComponent/calender";
 
 type Props = {
   salonId: Number;
-  userId:any;
+  userId: any;
+  name: String;
+  line1: String;
+  line2: String;
+  city: String;
+  contactNo: String;
+  openHours: String;
 };
 
 export function StaffServiceList(props: Props) {
@@ -24,8 +30,8 @@ export function StaffServiceList(props: Props) {
   const [price, setPrice] = useState<Number | null>(null);
   const [slotStart, setSlotStart] = useState<string | null>(" ");
   const [slotEnd, setSlotEnd] = useState<string | null>(" ");
-  const [staffName,setStaffName] = useState<string | null>(" ");
-  const [booked,setBooked] = useState([]);
+  const [staffName, setStaffName] = useState<string | null>(" ");
+  const [booked, setBooked] = useState([]);
   const userId = props.userId;
 
   const getAllCategories = async () => {
@@ -62,7 +68,11 @@ export function StaffServiceList(props: Props) {
     }
   };
 
-  const getTimes = async (staffId: Number | null, serviceId: Number | null, date: Date | null) => {
+  const getTimes = async (
+    staffId: Number | null,
+    serviceId: Number | null,
+    date: Date | null
+  ) => {
     if (!staffId || !serviceId || !date) return;
 
     setLoading(true);
@@ -71,7 +81,14 @@ export function StaffServiceList(props: Props) {
       const dayName = getDayName(date);
       const response = await axios.get(
         "https://stylesync-backend-test.onrender.com/customer/customer/staff-available-time",
-        { params: { staffId: staffId, serviceId: serviceId, dayName: dayName, date } }
+        {
+          params: {
+            staffId: staffId,
+            serviceId: serviceId,
+            dayName: dayName,
+            date,
+          },
+        }
       );
       setStartTime(response.data.data[0].openHour[0]);
       setCloseTime(response.data.data[0].closeHour[0]);
@@ -82,7 +99,7 @@ export function StaffServiceList(props: Props) {
       console.log("Close Time:", response.data.data[0].closeHour[0]);
       console.log("Duration:", response.data.data[0].duration[0]);
       setBooked(response.data.data2);
-      console.log("Breaks",response.data.data3)
+      console.log("Breaks", response.data.data3);
     } catch (error) {
       console.log(error);
     } finally {
@@ -96,7 +113,11 @@ export function StaffServiceList(props: Props) {
     setStaffName(staffName);
   };
 
-  const handleServiceClick = (serviceId: Number, serviceName:any, price:Number) => {
+  const handleServiceClick = (
+    serviceId: Number,
+    serviceName: any,
+    price: Number
+  ) => {
     setServiceId(serviceId);
     setServiceName(serviceName);
     setPrice(price);
@@ -176,7 +197,7 @@ export function StaffServiceList(props: Props) {
                   id="staff1"
                   name="staff1"
                   value={staff.name}
-                  onClick={() => handleStaffClick(staff.id,staff.name)}
+                  onClick={() => handleStaffClick(staff.id, staff.name)}
                 />
                 <p
                   style={{
@@ -215,7 +236,9 @@ export function StaffServiceList(props: Props) {
                   id="staff1"
                   name="staff1"
                   value={service.name}
-                  onChange={() => handleServiceClick(service.id,service.name,service.price)}
+                  onChange={() =>
+                    handleServiceClick(service.id, service.name, service.price)
+                  }
                 />
                 <p
                   style={{
@@ -238,8 +261,36 @@ export function StaffServiceList(props: Props) {
           </div>
         </div>
       </div>
-      <TimeBlocksList startTime={startTime} closeTime={closeTime} duration={duration} selectedDate={selectedDate} slotStart={slotStart} setSlotStart={setSlotStart} slotEnd={slotEnd} setSlotEnd={setSlotEnd} booked={booked}/>
-      <Calender selectedDate={selectedDate} setSelectedDate={setSelectedDate} staffId={staffId} serviceId={serviceId} serviceName={serviceName} price={price} staffName= {staffName} slotStart={slotStart} slotEnd={slotEnd} userId={userId}/>
+      <TimeBlocksList
+        startTime={startTime}
+        closeTime={closeTime}
+        duration={duration}
+        selectedDate={selectedDate}
+        slotStart={slotStart}
+        setSlotStart={setSlotStart}
+        slotEnd={slotEnd}
+        setSlotEnd={setSlotEnd}
+        booked={booked}
+      />
+      <Calender
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        staffId={staffId}
+        serviceId={serviceId}
+        serviceName={serviceName}
+        price={price}
+        staffName={staffName}
+        slotStart={slotStart}
+        slotEnd={slotEnd}
+        userId={userId}
+        name={props.name}
+        line1={props.line1}
+        line2={props.line2}
+        city={props.city}
+        contactNo={props.contactNo}
+        openHours={props.openHours}
+        
+      />
     </div>
   );
 }

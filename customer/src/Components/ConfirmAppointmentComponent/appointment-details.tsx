@@ -12,6 +12,12 @@ type AppointmentDetailsProps = {
   slotStart: string;
   slotEnd: string;
   userId: any;
+  name: String;
+  line1: String;
+  line2: String;
+  city: String;
+  contactNo: String;
+  openHours: String;
 };
 
 export function AppointmentDetails({
@@ -24,8 +30,14 @@ export function AppointmentDetails({
   slotStart,
   slotEnd,
   userId,
+  name,
+  line1,
+  line2,
+  city,
+  contactNo,
+  openHours,
 }: AppointmentDetailsProps) {
-  const [name, setName] = useState("");
+  const [customerName, setCustomerName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -47,7 +59,7 @@ export function AppointmentDetails({
         { params: { userId } }
       );
       console.log(response.data.data[0]);
-      setName(response.data.data[0].name);
+      setCustomerName(response.data.data[0].name);
       setEmail(response.data.data[0].email);
       setContactNumber(response.data.data[0].contactNo);
     } catch (error) {
@@ -72,14 +84,34 @@ export function AppointmentDetails({
           staffId: staffId,
           serviceId: serviceId,
           contactNumber: contactNumber,
-          bookingTime: currentDate.toISOString()
+          bookingTime: currentDate.toISOString(),
         }
       );
       console.log(response.data.status);
-      if(response.data.status===200){
-        navigate("/appointment-successful",{state:userId});
+      if (response.data.status === 200) {
+        navigate("/appointment-successful", {
+          state: {
+            userId,
+            date,
+            slotStart,
+            slotEnd,
+            serviceId,
+            serviceName,
+            contactNumber,
+            staffName,
+            price,
+            formattedDate,
+            customerName,
+            email,
+            name,
+            line1,
+            line2,
+            city,
+            contactNo,
+            openHours,
+          },
+        });
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -186,8 +218,8 @@ export function AppointmentDetails({
                   marginBottom: "10px",
                 }}
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
               />
               <label
                 style={{ display: "flex", justifyContent: "space-between" }}

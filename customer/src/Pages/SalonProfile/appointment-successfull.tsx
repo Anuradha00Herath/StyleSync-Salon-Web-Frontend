@@ -30,6 +30,7 @@ export default function AppointmentSuccessful() {
   const [city, setCity] = useState("");
   const [customerContact, setCustomerContact] = useState("");
   const [openHours,setOpenHours] = useState("");
+  const [isCancel,setIsCancel] = useState(false);
 
 
   const formattedDate = typeof date === "object" ? date.toDateString() : date;
@@ -40,14 +41,33 @@ export default function AppointmentSuccessful() {
       console.log("inputs not found");
       return;
     }
+    console.log("inputs", userId,staffId,slotStart,date);
     try{
       const response = await axios.get("https://stylesync-backend-test.onrender.com/customer/customer/appointment-details",{params:{
         userId,
         staffId,
-        date,
+        date:date,
         startTime:slotStart,
       }})
-      console.log(response);
+      console.log(response.data.data[0]);
+      setStaffName(response.data.data[0].staffName);
+      setStaffImage(response.data.data[0].staffImage);
+      setSalonImage(response.data.data[0].salonImage);
+      setCustomerImage(response.data.data[0].customerImage);
+      setServiceName(response.data.data[0].serviceName);
+      setPrice(response.data.data[0].price);
+      setSlotEnd(response.data.data[0].endTime);
+      setSalonContact(response.data.data[0].salonContactNo);
+      setCustomerName(response.data.data[0].customerName);
+      setCustomerEmail(response.data.data[0].customerEmail);
+      setSalonName(response.data.data[0].salonName);
+      setLine1(response.data.data[0].line1);
+      setLine2(response.data.data[0].line2);
+      setCity(response.data.data[0].city[0]);
+      setCustomerContact(response.data.data[0].customerContactNo);
+      setOpenHours(response.data.data[0].openHours);
+      setIsCancel(response.data.data[0].isCancel);
+      
     }catch(error){
       console.log(error);
     }
@@ -60,14 +80,6 @@ export default function AppointmentSuccessful() {
   return (
     <div style={{ width: "100%", backgroundColor: "white" }}>
       <NavigationBar userId={undefined} />
-       <Description
-              name={salonName}
-              line1={line1}
-              line2={line2}
-              city={city}
-              contactNo={salonContact}
-              openHours={openHours}
-            />
       <div
         style={{
           backgroundColor: "white",
@@ -81,7 +93,20 @@ export default function AppointmentSuccessful() {
         }}
       >
         <div style={{ width: "50%" }}>
-          <div
+          {isCancel?<div
+            style={{
+              width: "100%",
+              backgroundColor: "#fa9696",
+            }}
+          >
+            <p
+              style={{
+                textAlign: "center",
+              }}
+            >
+              Appointment is canceled
+            </p>
+          </div>:<div
             style={{
               width: "100%",
               backgroundColor: "#c5f79e",
@@ -94,7 +119,7 @@ export default function AppointmentSuccessful() {
             >
               Appointment Sent Successfully
             </p>
-          </div>
+          </div>}
           <h2 style={{ textAlign: "center" }}>Appointment Details</h2>
           
           <table
@@ -106,15 +131,7 @@ export default function AppointmentSuccessful() {
           >
             <tbody>
               <h4>Salon Details</h4>
-              <div
-            style={{
-              width: "100px",
-              height: "100px",
-              backgroundColor: "#e0e0e0",
-              
-              
-            }}
-          ></div>
+              <img src={salonImage} alt="salon profile" width="100px" height="100px"/>
               <tr>
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px"}}
@@ -139,16 +156,20 @@ export default function AppointmentSuccessful() {
                   {salonContact}
                 </td>
               </tr>
+              <tr>
+                <td
+                  style={{ borderBottom: "1px solid #e0e0e0", padding: "8px" }}
+                >
+                  Salon Address
+                </td>
+                <td
+                  style={{ borderBottom: "1px solid #e0e0e0", padding: "8px", justifyContent:"flex-end" ,display:"flex" }}
+                >
+                  {line1},{line2},{city}.
+                </td>
+              </tr>
               <h4>Staff Details</h4>
-              <div
-            style={{
-              width: "100px",
-              height: "100px",
-              backgroundColor: "#e0e0e0",
-              
-              
-            }}
-          ></div>
+              <img src={staffImage} alt="salon profile" width="100px" height="100px"/>
               <tr>
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px" }}

@@ -23,7 +23,6 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState([]);
   const [times, setTimes] = useState([]);
-  console.log(block.id);
 
   const getSalonDetails = async () => {
     setLoading(true);
@@ -32,8 +31,6 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
         "https://stylesync-backend-test.onrender.com/customer/customer/get-salon-details",
         { params: { salonId: block.id } }
       );
-      console.log(response.data.data1);
-      console.log(response.data.data2);
       setService(response.data.data2);
       setTimes(response.data.data1);
       setLoading(false);

@@ -1,40 +1,71 @@
 import { useLocation } from "react-router-dom";
 import { NavigationBar } from "../../Components/AvailableSalonComponent/navigation-bar";
 import { Footer } from "../../Components/HomeComponent/footer";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Description } from "../../Components/MakeAppointmentComponent/salon-profile-discription";
+import axios from "axios";
 
 export default function AppointmentSuccessful() {
   const location = useLocation();
   const {
     userId,
     date,
-    staffName,
-    serviceName,
-    price,
-    formattedDate,
     slotStart,
-    slotEnd,
-    contactNumber,
-    customerName,
-    email,
-    name,
-    line1,
-    line2,
-    city,
-    contactNo,
-    openHours,
+    staffId
   } = location.state;
+
+  const [staffName,setStaffName] = useState("");
+  const [staffImage,setStaffImage] = useState("");
+  const [salonImage,setSalonImage]= useState("");
+  const [customerImage,setCustomerImage] = useState("");
+  const [serviceName,setServiceName] = useState("");
+  const [price,setPrice] = useState("");
+  const [slotEnd,setSlotEnd] = useState("");
+  const [salonContact, setSalonContact] = useState("");
+  const [customerName,setCustomerName] = useState("");
+  const [customerEmail,setCustomerEmail] = useState("");
+  const [salonName,setSalonName]= useState("");
+  const [line1,setLine1] = useState("");
+  const [line2,setLine2] = useState("");
+  const [city, setCity] = useState("");
+  const [customerContact, setCustomerContact] = useState("");
+  const [openHours,setOpenHours] = useState("");
+
+
+  const formattedDate = typeof date === "object" ? date.toDateString() : date;
+
+
+  const appointemntDetails = async() =>{
+    if(!userId || !staffId || !slotStart || !date){
+      console.log("inputs not found");
+      return;
+    }
+    try{
+      const response = await axios.get("https://stylesync-backend-test.onrender.com/customer/customer/appointment-details",{params:{
+        userId,
+        staffId,
+        date,
+        startTime:slotStart,
+      }})
+      console.log(response);
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  useEffect(()=>{
+    appointemntDetails();
+  });
 
   return (
     <div style={{ width: "100%", backgroundColor: "white" }}>
       <NavigationBar userId={undefined} />
        <Description
-              name={name}
+              name={salonName}
               line1={line1}
               line2={line2}
               city={city}
-              contactNo={contactNo}
+              contactNo={salonContact}
               openHours={openHours}
             />
       <div
@@ -93,7 +124,7 @@ export default function AppointmentSuccessful() {
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px", justifyContent:"flex-end" ,display:"flex" }}
                 >
-                  {name}
+                  {salonName}
                 </td>
               </tr>
               <tr>
@@ -105,7 +136,7 @@ export default function AppointmentSuccessful() {
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px", justifyContent:"flex-end" ,display:"flex" }}
                 >
-                  {contactNo}
+                  {salonContact}
                 </td>
               </tr>
               <h4>Staff Details</h4>
@@ -139,7 +170,7 @@ export default function AppointmentSuccessful() {
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px", justifyContent:"flex-end" ,display:"flex" }}
                 >
-                  {contactNo}
+                  {salonContact}
                 </td>
               </tr>
               <h4>Appointment Details</h4>
@@ -222,12 +253,12 @@ export default function AppointmentSuccessful() {
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px", justifyContent:"flex-end" ,display:"flex" }}
                 >
-                  {contactNumber}
+                  {customerContact}
                 </td>
               </tr>
               <tr>
                 <td style={{ padding: "8px" }}>Email Address</td>
-                <td style={{ padding: "8px", justifyContent:"flex-end" ,display:"flex" }}>{email}</td>
+                <td style={{ padding: "8px", justifyContent:"flex-end" ,display:"flex" }}>{customerEmail}</td>
               </tr>
             </tbody>
           </table>

@@ -30,7 +30,6 @@ export const SalonSet = (props:Props) => {
         "https://stylesync-backend-test.onrender.com/customer/customer/show-salons-under-categories",
         { params: { serviceType: salon.serviceType } }
       );
-      console.log(response.data.data);
       setServiceBlock(response.data.data);
       setLoading(false);
     } catch (error) {

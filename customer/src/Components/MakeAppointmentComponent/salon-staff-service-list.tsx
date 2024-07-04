@@ -28,8 +28,8 @@ export function StaffServiceList(props: Props) {
   const [serviceId, setServiceId] = useState<Number | null>(null);
   const [serviceName, setServiceName] = useState<string | null>("");
   const [price, setPrice] = useState<Number | null>(null);
-  const [slotStart, setSlotStart] = useState<string | null>(" ");
-  const [slotEnd, setSlotEnd] = useState<string | null>(" ");
+  const [slotStart, setSlotStart] = useState<string | null>(null);
+  const [slotEnd, setSlotEnd] = useState<string | null>(null);
   const [staffName, setStaffName] = useState<string | null>(" ");
   const [booked, setBooked] = useState([]);
   const userId = props.userId;

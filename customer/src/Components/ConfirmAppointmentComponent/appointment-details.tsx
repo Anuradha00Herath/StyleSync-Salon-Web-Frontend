@@ -30,12 +30,6 @@ export function AppointmentDetails({
   slotStart,
   slotEnd,
   userId,
-  name,
-  line1,
-  line2,
-  city,
-  contactNo,
-  openHours,
 }: AppointmentDetailsProps) {
   const [customerName, setCustomerName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
@@ -94,21 +88,7 @@ export function AppointmentDetails({
             userId,
             date,
             slotStart,
-            slotEnd,
-            serviceId,
-            serviceName,
-            contactNumber,
-            staffName,
-            price,
-            formattedDate,
-            customerName,
-            email,
-            name,
-            line1,
-            line2,
-            city,
-            contactNo,
-            openHours,
+            staffId
           },
         });
       }

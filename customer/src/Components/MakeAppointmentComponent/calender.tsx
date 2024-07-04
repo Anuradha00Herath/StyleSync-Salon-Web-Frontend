@@ -10,9 +10,9 @@ type Props = {
   serviceId: Number | null;
   serviceName: string | null;
   price: Number | null;
-  staffName: string | null;
-  slotStart: string | null;
-  slotEnd: string | null;
+  staffName: String | null;
+  slotStart: String | null;
+  slotEnd: String | null;
   userId: any;
   name: String;
   line1: String;
@@ -41,6 +41,35 @@ export function Calender({
   openHours,
 }: Props) {
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+
+  const handleBooking = () => {
+    if (!staffId || !serviceId || !slotStart || !slotEnd) {
+      setError("Please select a staff member, service, and time slot.");
+      return;
+    }
+    setError(null);
+    navigate("/confirm-appointment", {
+      state: {
+        date: selectedDate,
+        staffId: staffId,
+        serviceId: serviceId,
+        serviceName: serviceName,
+        price: price,
+        staffName: staffName,
+        slotStart: slotStart,
+        slotEnd: slotEnd,
+        userId: userId,
+        name: name,
+        line1: line1,
+        line2: line2,
+        city: city,
+        contactNo: contactNo,
+        openHours: openHours,
+      },
+    });
+  };
+
   return (
     <div
       style={{
@@ -82,6 +111,9 @@ export function Calender({
             />
           </div>
         </div>
+        {error && (
+          <div style={{ color: "red", marginTop: 10 }}>{error}</div>
+        )}
         <button
           style={{
             height: 40,
@@ -92,27 +124,7 @@ export function Calender({
             textDecoration: "none",
             cursor: "pointer",
           }}
-          onClick={() =>
-            navigate("/confirm-appointment", {
-              state: {
-                date: selectedDate,
-                staffId: staffId,
-                serviceId: serviceId,
-                serviceName: serviceName,
-                price: price,
-                staffName: staffName,
-                slotStart: slotStart,
-                slotEnd: slotEnd,
-                userId: userId,
-                name: name,
-                line1: line1,
-                line2: line2,
-                city: city,
-                contactNo: contactNo,
-                openHours: openHours,
-              },
-            })
-          }
+          onClick={handleBooking}
         >
           Book Time Slot
         </button>

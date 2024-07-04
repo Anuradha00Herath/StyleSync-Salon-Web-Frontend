@@ -35,6 +35,7 @@ export function NavigationBar(props: Props) {
         return appointmentDate > now;
       });
       setAppointments(upcomingAppointments);
+      console.log("details",upcomingAppointments);
     } catch (error) {
       console.log(error);
     } finally {

@@ -3,11 +3,13 @@ import "../AvailableSalonComponent/navigation-bar.css";
 import english from "../../assets/english.png";
 import help from "../../assets/help.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface Appointment {
   date: string;
   salon: string[];
   startTime: string;
+  staffId:any
 }
 
 interface Props {
@@ -15,10 +17,34 @@ interface Props {
   appointment: Appointment;
 }
 
+
+
 export function AppointmentBar(props: Props) {
   const navigate = useNavigate();
   const [timeRemaining, setTimeRemaining] = useState('');
-  console.log(props.appointment.salon);
+  const [loading, setLoading] = useState(false);
+  const userId = props.userId;
+  const staffId = props.appointment.staffId;
+  const startTime = props.appointment.startTime;
+  const date = props.appointment.date;
+
+
+  const handleCancel = async() =>{
+    if(!userId || !staffId || !startTime || !date){
+      console.log(userId,staffId,startTime,date);
+      return;
+    }
+    setLoading(true);
+    try{
+      const response = await axios.put("https://stylesync-backend-test.onrender.com/customer/customer/cancel-appointment",{userId,staffId,startTime,date});
+      console.log(response.data);
+      navigate("/appointment-successful",{state:{userId,staffId,startTime,date}})
+    }catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
   useEffect(() => {
     const calculateTimeRemaining = () => {
       const now = new Date();
@@ -83,6 +109,7 @@ export function AppointmentBar(props: Props) {
               marginLeft: 30,
               textDecoration: "underline",
             }}
+            onClick={handleCancel}
           >
             Cancel
           </button>
@@ -91,6 +118,7 @@ export function AppointmentBar(props: Props) {
               marginLeft: 30,
               textDecoration: "underline",
             }}
+            onClick={()=>navigate("/appointment-successful",{state:{userId,staffId,startTime,date}})}
           >
             More Info
           </button>

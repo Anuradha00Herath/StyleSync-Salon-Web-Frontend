@@ -4,7 +4,7 @@ import { HomeNavigationBar } from "../../Components/HomeComponent/home-navigatio
 //import { ArticlePage } from "./ArticlePage";
 import { FAQsPage } from "./FAQsPage";
 import { SendMessage } from "./SendMessage";
-//import { Footer } from "../../Components/HomeComponent/footer";
+import { Footer } from "../../Components/HomeComponent/footer";
 
 import { ServicesPage } from "./ServicesPage";
 import { StartingPage } from "./StartingPage";
@@ -44,14 +44,11 @@ export default function HomePage() {
       <div id="message">
         <SendMessage />
       </div>
-      {/* <div
+      <div
         id="footer"
-        style={{
-          marginTop: 70,
-        }}
       >
         <Footer />
-      </div> */}
+      </div>
       <LoginModal open={isLoginModalOpen} setOpen={setLoginModalOpen} handleClose={handleCloseLoginModal} setUserId={setUserId} userId={userId}/>
     </>
   );

@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId="379363966504-g79mbtqmoef1suq9p2ev7hlnphq92epj.apps.googleusercontent.com">
     <App />
-    </GoogleOAuthProvider>;
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
 

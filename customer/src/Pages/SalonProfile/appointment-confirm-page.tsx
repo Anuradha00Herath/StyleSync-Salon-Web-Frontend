@@ -7,21 +7,51 @@ import { Description } from "../../Components/MakeAppointmentComponent/salon-pro
 
 export default function AppointmentConfirm() {
   const location = useLocation();
-  const { date, staffId, serviceId, serviceName, price,staffName, slotStart, slotEnd, userId } = location.state;
+  const {
+    date,
+    staffId,
+    serviceId,
+    serviceName,
+    price,
+    staffName,
+    slotStart,
+    slotEnd,
+    userId,
+    name,
+    line1,
+    line2,
+    city,
+    contactNo,
+    openHours,
+  } = location.state;
   console.log(userId);
-  
+
   return (
     <div style={{ backgroundColor: "#f8f5f3" }}>
       <div>
-        <NavigationBar userId={userId}/>
+        <NavigationBar userId={userId} />
       </div>
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <div style={{ width: "70%" }}>
           <div>
-            {/* <Description /> */}
+            <Description
+              name={name}
+              line1={line1}
+              line2={line2}
+              city={city}
+              contactNo={contactNo}
+              openHours={openHours}
+            />
           </div>
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
-            <AppointmentDetails 
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
+            <AppointmentDetails
               date={date}
               staffId={staffId}
               serviceId={serviceId}
@@ -31,6 +61,12 @@ export default function AppointmentConfirm() {
               slotStart={slotStart}
               slotEnd={slotEnd}
               userId={userId}
+              name={name}
+              line1={line1}
+              line2={line2}
+              city={city}
+              contactNo={contactNo}
+              openHours={openHours}
             />
           </div>
         </div>

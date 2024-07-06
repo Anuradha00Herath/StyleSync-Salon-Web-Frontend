@@ -16,11 +16,15 @@ type Props = {
   slotEnd: string | null;
   setSlotEnd: React.Dispatch<React.SetStateAction<string | null>>;
   booked: { startTime: string; endTime: string }[];
+  isOpen: Boolean;
 };
 
 export function TimeBlocksList(props: Props) {
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
-  const [selectedSlot, setSelectedSlot] = useState<{ start: string; end: string } | null>(null);
+  const [selectedSlot, setSelectedSlot] = useState<{
+    start: string;
+    end: string;
+  } | null>(null);
 
   useEffect(() => {
     const openTime = props.startTime;
@@ -33,32 +37,55 @@ export function TimeBlocksList(props: Props) {
     console.log("Duration:", duration);
 
     if (openTime && closeTime && duration) {
-      const generatedSlots = generateTimeSlots(openTime, closeTime, duration, props.booked);
+      const generatedSlots = generateTimeSlots(
+        openTime,
+        closeTime,
+        duration,
+        props.booked
+      );
       setTimeSlots(generatedSlots);
 
       console.log("Generated Time Slots:", generatedSlots);
     }
-  }, [props.startTime, props.closeTime, props.duration, props.selectedDate, props.booked]);
+  }, [
+    props.startTime,
+    props.closeTime,
+    props.duration,
+    props.selectedDate,
+    props.booked,
+  ]);
 
-  function generateTimeSlots(openTime: string, closeTime: string, duration: number, booked: { startTime: string; endTime: string }[]): TimeSlot[] {
+  function generateTimeSlots(
+    openTime: string,
+    closeTime: string,
+    duration: number,
+    booked: { startTime: string; endTime: string }[]
+  ): TimeSlot[] {
     const periods = ["Morning", "Afternoon", "Evening"];
 
     function timeToMinutes(time: string): number {
-      const [hours, minutes] = time.split(':').map(Number);
+      const [hours, minutes] = time.split(":").map(Number);
       return hours * 60 + minutes;
     }
 
     function minutesToTime(minutes: number): string {
       const hours = Math.floor(minutes / 60);
       const mins = minutes % 60;
-      return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
+      return `${String(hours).padStart(2, "0")}:${String(mins).padStart(
+        2,
+        "0"
+      )}`;
     }
 
-    function isTimeSlotBooked(startMinutes: number, endMinutes: number, bookedSlots: { startTime: string; endTime: string }[]): boolean {
-      return bookedSlots.some(slot => {
+    function isTimeSlotBooked(
+      startMinutes: number,
+      endMinutes: number,
+      bookedSlots: { startTime: string; endTime: string }[]
+    ): boolean {
+      return bookedSlots.some((slot) => {
         const slotStart = timeToMinutes(slot.startTime);
         const slotEnd = timeToMinutes(slot.endTime);
-        return (startMinutes < slotEnd && endMinutes > slotStart);
+        return startMinutes < slotEnd && endMinutes > slotStart;
       });
     }
 
@@ -86,8 +113,11 @@ export function TimeBlocksList(props: Props) {
         period = periods[2];
       }
 
-      const isToday = props.selectedDate && props.selectedDate.toDateString() === now.toDateString();
-      const isPast = props.selectedDate && props.selectedDate < new Date(now.toDateString());
+      const isToday =
+        props.selectedDate &&
+        props.selectedDate.toDateString() === now.toDateString();
+      const isPast =
+        props.selectedDate && props.selectedDate < new Date(now.toDateString());
       const isTimePast = isToday && currentMinutes < currentDateMinutes;
       const isBooked = isTimeSlotBooked(currentMinutes, endMinutes, booked);
 
@@ -121,41 +151,55 @@ export function TimeBlocksList(props: Props) {
         padding: "20px",
       }}
     >
-      {["Morning", "Afternoon", "Evening"].map((period) => (
-        <div
-          key={period}
-          style={{
-            margin: "0 10px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <h4 style={{ textAlign: "center" }}>{period}</h4>
-          {timeSlots
-            .filter((slot) => slot.period === period)
-            .map((slot, index) => {
-              const [start, end] = slot.time.split(' - ');
-              const isSelected = selectedSlot && selectedSlot.start === start && selectedSlot.end === end;
-              return (
-                <div
-                  key={index}
-                  style={{
-                    color: "black",
-                    textDecoration: "none",
-                    pointerEvents: slot.available ? "auto" : "none",
-                    cursor: slot.available ? "pointer" : "default",
-                    ...styles.timeSlot,
-                    ...(slot.available ? styles.available : styles.unavailable),
-                    ...(isSelected ? styles.selected : {}),
-                  }}
-                  onClick={() => slot.available && handleSlotClick(start, end)}
-                >
-                  {slot.time}
-                </div>
-              );
-            })}
+      {props.isOpen ? (
+        <div>
+          {" "}
+          {["Morning", "Afternoon", "Evening"].map((period) => (
+            <div
+              key={period}
+              style={{
+                margin: "0 10px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <h4 style={{ textAlign: "center" }}>{period}</h4>
+              {timeSlots
+                .filter((slot) => slot.period === period)
+                .map((slot, index) => {
+                  const [start, end] = slot.time.split(" - ");
+                  const isSelected =
+                    selectedSlot &&
+                    selectedSlot.start === start &&
+                    selectedSlot.end === end;
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        color: "black",
+                        textDecoration: "none",
+                        pointerEvents: slot.available ? "auto" : "none",
+                        cursor: slot.available ? "pointer" : "default",
+                        ...styles.timeSlot,
+                        ...(slot.available
+                          ? styles.available
+                          : styles.unavailable),
+                        ...(isSelected ? styles.selected : {}),
+                      }}
+                      onClick={() =>
+                        slot.available && handleSlotClick(start, end)
+                      }
+                    >
+                      {slot.time}
+                    </div>
+                  );
+                })}
+            </div>
+          ))}
         </div>
-      ))}
+      ) : (
+        <span>Salon is closed</span>
+      )}
     </div>
   );
 }

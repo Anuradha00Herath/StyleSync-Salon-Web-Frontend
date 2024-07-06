@@ -1,17 +1,20 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { NavigationBar } from "../../Components/AvailableSalonComponent/navigation-bar";
 import { Footer } from "../../Components/HomeComponent/footer";
 import background from "../../assets/background.jpg";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { SalonSet } from "../../Components/AvailableSalonComponent/salon-set";
+import SearchBar from "../../Components/AvailableSalonComponent/search-salon";
 
 export default function AvailableSalonPage() {
+  const navigate = useNavigate();
   const location = useLocation();
   const { serviceType, userId } = location.state;
   const [serviceSet, setServiceSet] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  console.log("serviceSet", serviceSet);
 
   const getAllCategories = async () => {
     setLoading(true);
@@ -30,10 +33,9 @@ export default function AvailableSalonPage() {
   };
 
   
-
   useEffect(() => {
     getAllCategories();
-  },[]);
+  }, []);
 
   return (
     <div>
@@ -59,64 +61,7 @@ export default function AvailableSalonPage() {
             <p>
               Enter your dates and choose from 5,000 salons to get your service!
             </p>
-            <div
-              style={{
-                paddingTop: 20,
-              }}
-            >
-              <form>
-                <input
-                  style={{
-                    height: 40,
-                    width: 180,
-                  }}
-                  type="text"
-                  placeholder="Search salon name or location"
-                />
-                <input
-                  style={{
-                    height: 40,
-                    width: 180,
-                  }}
-                  type="date"
-                />
-                <select
-                  style={{
-                    height: 40,
-                    width: 180,
-                  }}
-                  id="gender"
-                  name="gender"
-                  defaultValue="select gender"
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-                <select
-                  style={{
-                    height: 40,
-                    width: 180,
-                  }}
-                  id="categories"
-                  name="categories"
-                  defaultValue="select service"
-                >
-                  <option value="Hair Service">Male Hair Cut</option>
-                  <option value="Nail Service">Beard Shaving</option>
-                </select>
-
-                <input
-                  style={{
-                    height: 40,
-                    width: 180,
-                    backgroundColor: "black",
-                    color: "white",
-                  }}
-                  type="submit"
-                  value="Search"
-                />
-              </form>
-            </div>
+           <SearchBar/>
           </div>
         </div>
       </div>

@@ -21,7 +21,6 @@ export const SalonSet = (props:Props) => {
   const [loading, setLoading] = useState(false);
   const [serviceBlock, setServiceBlock] = useState([]);
   const navigate = useNavigate();
-  console.log(salon);
 
   const getSalonsUnderCategories = async () => {
     setLoading(true);

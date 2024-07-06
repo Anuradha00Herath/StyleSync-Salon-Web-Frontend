@@ -20,59 +20,52 @@ const modalStyle = {
 interface LoginModalProps {
   open: boolean;
   handleClose: () => void;
-  setOpen: any;
-  setUserId:any;
-  userId:any;
+  setOpen: (open: boolean) => void;
+  setUserId: (id: any) => void;
+  userId: string | null;
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({ open, handleClose, setOpen, setUserId, userId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name,setName] = useState("");
+  const [name, setName] = useState("");
   const [contactNo, setContactNo] = useState("");
   const [regMode, setRegMode] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const validateInputs = () => {
-    let isValid = true;
+  useEffect(() => {
+    googleLogout();
+  }, []);
 
+  const validateInputs = () => {
     if (!email.trim()) {
-      setError("*Email field is required");
-      isValid = false;
-    } else {
-      setError("");
+      setError("Email field is required");
+      return false;
     }
     if (!password.trim()) {
-      setError("*Password field is required");
-      isValid = false;
-    } else if (!/^(?=.*\d{2,}).{8,}$/.test(password)) {
-      setError(
-        "*Password must be at least 8 characters and contain at least 2 digits"
-      );
-      isValid = false;
-    } else {
-      setError("");
+      setError("Password field is required");
+      return false;
     }
-    return isValid;
+    if (!/^(?=.*\d{2,}).{8,}$/.test(password)) {
+      setError("Password must be at least 8 characters and contain at least 2 digits");
+      return false;
+    }
+    setError(null);
+    return true;
   };
 
-  const handleSubmit = async (event:any) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (validateInputs()) {
+      setLoading(true);
       try {
-        setLoading(true);
-        const url =
-          "https://stylesync-backend-test.onrender.com/customer/customer/login-customer";
-        const response = await axios.post(url, {
-          email,
-          password,
-        });
-        console.log(response.data.data);
+        const url = "https://stylesync-backend-test.onrender.com/customer/customer/login-customer";
+        const response = await axios.post(url, { email, password });
         setUserId(response.data.data.id);
         alert("Logged in successfully");
         setIsLogin(true);
@@ -86,85 +79,52 @@ const LoginModal: React.FC<LoginModalProps> = ({ open, handleClose, setOpen, set
     }
   };
 
-  useEffect(() => {
-    // Log out the user on refresh
-    googleLogout();
-  }, []);
-
   const validateInputs2 = () => {
-    let isValid = true;
-
     if (!name.trim()) {
-      setError("*Name field is required");
-      isValid = false;
-      alert("Name field is required");
-    } else {
-      setError("");
+      setError("Name field is required");
+      return false;
     }
     if (!email.trim()) {
-      setError("*Email field is required");
-      isValid = false;
-      alert("Email field is required");
-    } else if (
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
-    ) {
-      setError("*Invalid email format");
-      isValid = false;
-      alert("Invalid email format");
-    } else {
-      setError("");
+      setError("Email field is required");
+      return false;
+    }
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      setError("Invalid email format");
+      return false;
     }
     if (!password.trim()) {
-      setError("*Password field is required");
-      isValid = false;
-      alert("Password field is required");
-    } else if (!/^(?=.*\d{2,}).{8,}$/.test(password)) {
-      setError(
-        "*Password must be at least 8 characters and contain at least 2 digits"
-      );
-      isValid = false;
-      alert(
-        "Password must be at least 8 characters and contain at least 2 digits"
-      );
-    } else {
-      setError("");
+      setError("Password field is required");
+      return false;
+    }
+    if (!/^(?=.*\d{2,}).{8,}$/.test(password)) {
+      setError("Password must be at least 8 characters and contain at least 2 digits");
+      return false;
     }
     if (!confirmPassword.trim()) {
-      setError("*Confirm password field is required");
-      isValid = false;
-      alert("Confirm password field is required");
-    } else if (password !== confirmPassword) {
-      setError("*Password and confirm password do not match");
-      isValid = false;
-      alert("Password and confirm password do not match");
-    } else {
-      setError("");
+      setError("Confirm password field is required");
+      return false;
     }
-    return isValid;
+    if (password !== confirmPassword) {
+      setError("Password and confirm password do not match");
+      return false;
+    }
+    setError(null);
+    return true;
   };
 
-  const handleSubmit2 = async (event: any) => {
-    event.preventDefault(); 
+  const handleSubmit2 = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (validateInputs2()) {
+      setLoading(true);
       try {
-        setLoading(true);
-        const url =
-          "https://stylesync-backend-test.onrender.com/customer/customer/register-customer";
-        const response = await axios.post(url, {
-          name,
-          email,
-          password,
-          confirmPassword,
-          contactNo
-        });
-
-        console.log(response.data.data);
+        const url = "https://stylesync-backend-test.onrender.com/customer/customer/register-customer";
+        const response = await axios.post(url, { name, email, password, confirmPassword, contactNo });
         setUserId(response.data.data.id);
         alert("Registered Successfully");
         setIsLogin(true);
-        setOpen(false)
+        setOpen(false);
       } catch (error) {
-        console.error(error);
+        console.error("Error registering:", error);
       } finally {
         setLoading(false);
       }
@@ -172,258 +132,61 @@ const LoginModal: React.FC<LoginModalProps> = ({ open, handleClose, setOpen, set
   };
 
   return (
-    <Modal
-      open={open && !isLogin}
-      onClose={handleClose}
-      aria-labelledby="login-modal-title"
-      aria-describedby="login-modal-description"
-    >
+    <Modal open={open && !isLogin} onClose={handleClose} aria-labelledby="login-modal-title" aria-describedby="login-modal-description">
       <Box sx={modalStyle}>
         {regMode ? (
-          <div>
+          <form onSubmit={handleSubmit2}>
             <div style={{ fontWeight: "bold" }}>Register to StyleSync</div>
-            <label
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: 20,
-              }}
-            >
+            {error && <div style={{ color: "red" }}>{error}</div>}
+            <label style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
               Name <br />
-              <input
-                style={{
-                  border: 0,
-                  borderBottom: "2px solid",
-                  height: 40,
-                  width: 350,
-                  outline: "none",
-                }}
-                type="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+              <input style={{ border: 0, borderBottom: "2px solid", height: 40, width: 350, outline: "none" }} type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </label>
-            <label
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: 20,
-              }}
-            >
+            <label style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
               Email <br />
-              <input
-                style={{
-                  border: 0,
-                  borderBottom: "2px solid",
-                  height: 40,
-                  width: 350,
-                  outline: "none",
-                }}
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <input style={{ border: 0, borderBottom: "2px solid", height: 40, width: 350, outline: "none" }} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </label>
-
-            <label
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: 20,
-              }}
-            >
+            <label style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
               Contact Number <br />
-              <input
-                style={{
-                  border: 0,
-                  borderBottom: "2px solid",
-                  height: 40,
-                  width: 350,
-                  outline: "none",
-                }}
-                type="number"
-                value={contactNo}
-                onChange={(e) => setContactNo(e.target.value)}
-              />
+              <input style={{ border: 0, borderBottom: "2px solid", height: 40, width: 350, outline: "none" }} type="text" value={contactNo} onChange={(e) => setContactNo(e.target.value)} />
             </label>
-
-            <label
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: 20,
-              }}
-            >
+            <label style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
               Password <br />
-              <input
-                style={{
-                  border: 0,
-                  borderBottom: "2px solid",
-                  height: 40,
-                  width: 350,
-                  outline: "none",
-                }}
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <input style={{ border: 0, borderBottom: "2px solid", height: 40, width: 350, outline: "none" }} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </label>
-            <label
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: 20,
-              }}
-            >
+            <label style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
               Confirm Password <br />
-              <input
-                style={{
-                  border: 0,
-                  borderBottom: "2px solid",
-                  height: 40,
-                  width: 350,
-                  outline: "none",
-                }}
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              <input style={{ border: 0, borderBottom: "2px solid", height: 40, width: 350, outline: "none" }} type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
             </label>
-
-            <input
-              style={{
-                height: 40,
-                width: 350,
-                marginTop: 40,
-                backgroundColor: "black",
-                color: "white",
-                cursor: "pointer",
-              }}
-              type="submit"
-              value="Register"
-              onClick={handleSubmit2}
-            />
-            <div
-              style={{
-                color: "black",
-                fontWeight: 500,
-                fontSize: 14,
-                marginTop: 15,
-                cursor:"pointer"
-              }}
-              onClick={() => setRegMode(false)}
-            >
+            <input style={{ height: 40, width: 350, marginTop: 40, backgroundColor: "black", color: "white", cursor: "pointer" }} type="submit" value="Register" />
+            <div style={{ color: "black", fontWeight: 500, fontSize: 14, marginTop: 15, cursor: "pointer" }} onClick={() => setRegMode(false)}>
               Already Have An Account? Login
             </div>
-            <div
-              style={{
-                marginTop: 20,
-              }}
-            >
-            </div>
-          </div>
+          </form>
         ) : (
-          <div>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-row justify-between items-center">
-            <div style={{ fontWeight: "bold" }}>Login to StyleSync</div>
-            <button
-                      className="text-black focus:outline-none "
-                      // onClick={toggleMenu}
-                      
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
+              <div style={{ fontWeight: "bold" }}>Login to StyleSync</div>
+              <button className="text-black focus:outline-none">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
-            <label
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: 20,
-              }}
-            >
+            {error && <div style={{ color: "red" }}>{error}</div>}
+            <label style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
               Email <br />
-              <input
-                style={{
-                  border: 0,
-                  borderBottom: "2px solid",
-                  height: 40,
-                  width: 350,
-                  outline: "none",
-                }}
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <input style={{ border: 0, borderBottom: "2px solid", height: 40, width: 350, outline: "none" }} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </label>
-
-            <label
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: 20,
-              }}
-            >
+            <label style={{ display: "flex", flexDirection: "column", marginTop: 20 }}>
               Password <br />
-              <input
-                style={{
-                  border: 0,
-                  borderBottom: "2px solid",
-                  height: 40,
-                  width: 350,
-                  outline: "none",
-                }}
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <input style={{ border: 0, borderBottom: "2px solid", height: 40, width: 350, outline: "none" }} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </label>
-
-            <input
-              style={{
-                height: 40,
-                width: 350,
-                marginTop: 40,
-                backgroundColor: "black",
-                color: "white",
-                cursor: "pointer",
-              }}
-              type="submit"
-              value="Login"
-              onClick={handleSubmit}
-            />
-            <div
-              style={{
-                color: "black",
-                fontWeight: 500,
-                fontSize: 14,
-                marginTop: 15,
-                cursor:"pointer"
-              }}
-              onClick={() => setRegMode(true)}
-            >
+            <input style={{ height: 40, width: 350, marginTop: 40, backgroundColor: "black", color: "white", cursor: "pointer" }} type="submit" value="Login" />
+            <div style={{ color: "black", fontWeight: 500, fontSize: 14, marginTop: 15, cursor: "pointer" }} onClick={() => setRegMode(true)}>
               Don’t Have An Account? Create Account
             </div>
-            <div
-              style={{
-                marginTop: 20,
-              }}
-            >
-            </div>
-            <div
-              style={{
-                marginTop: 20,
-              }}
-            >
-            </div>
-          </div>
+          </form>
         )}
       </Box>
     </Modal>

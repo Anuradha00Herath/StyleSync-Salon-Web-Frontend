@@ -79,7 +79,7 @@ export default function AppointmentSuccessful() {
 
   return (
     <div style={{ width: "100%", backgroundColor: "white" }}>
-      <NavigationBar userId={undefined} />
+      <NavigationBar userId={userId} />
       <div
         style={{
           backgroundColor: "white",

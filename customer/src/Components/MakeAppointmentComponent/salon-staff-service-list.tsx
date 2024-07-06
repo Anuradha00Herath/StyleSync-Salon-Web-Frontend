@@ -32,6 +32,7 @@ export function StaffServiceList(props: Props) {
   const [slotEnd, setSlotEnd] = useState<string | null>(null);
   const [staffName, setStaffName] = useState<string | null>(" ");
   const [booked, setBooked] = useState([]);
+  const [isOpen, setIsOpen] = useState(true);
   const userId = props.userId;
 
   const getAllCategories = async () => {
@@ -93,6 +94,7 @@ export function StaffServiceList(props: Props) {
       setStartTime(response.data.data[0].openHour[0]);
       setCloseTime(response.data.data[0].closeHour[0]);
       setDuration(response.data.data[0].duration[0]);
+      setIsOpen(response.data.data[0].isOpen[0]);
 
       // Debugging logs
       console.log("Start Time:", response.data.data[0].openHour[0]);
@@ -194,8 +196,8 @@ export function StaffServiceList(props: Props) {
               >
                 <input
                   type="radio"
-                  id="staff1"
-                  name="staff1"
+                  id="staff"
+                  name="staff"
                   value={staff.name}
                   onClick={() => handleStaffClick(staff.id, staff.name)}
                 />
@@ -232,9 +234,9 @@ export function StaffServiceList(props: Props) {
                 }}
               >
                 <input
-                  type="checkbox"
+                  type="radio"
                   id="staff1"
-                  name="staff1"
+                  name="service"
                   value={service.name}
                   onChange={() =>
                     handleServiceClick(service.id, service.name, service.price)
@@ -261,7 +263,7 @@ export function StaffServiceList(props: Props) {
           </div>
         </div>
       </div>
-      <TimeBlocksList
+      {isOpen?<TimeBlocksList
         startTime={startTime}
         closeTime={closeTime}
         duration={duration}
@@ -271,7 +273,9 @@ export function StaffServiceList(props: Props) {
         slotEnd={slotEnd}
         setSlotEnd={setSlotEnd}
         booked={booked}
-      />
+        isOpen={isOpen}
+      />:"Salon is closed"}
+      
       <Calender
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}

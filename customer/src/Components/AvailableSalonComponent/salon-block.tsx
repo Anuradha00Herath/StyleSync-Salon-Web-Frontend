@@ -1,28 +1,28 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import salon from "../../assets/salon.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import React from "react";
 
 interface SalonBlockProps {
-  id: Number;
-  name: String;
-  line1: String;
-  line2: String;
-  city: String;
-  contactNo: String;
-}
-interface MyComponentProps {
-  block: SalonBlockProps;
-  userId: any;
+  id: number;
+  name: string;
+  line1: string;
+  line2: string;
+  city: string;
+  contactNo: string;
 }
 
-export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
+interface MyComponentProps {
+  block: SalonBlockProps;
+  userId: number | null;
+}
+
+export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState([]);
-  const [times, setTimes] = useState([]);
+  const [times, setTimes] = useState<string[]>([]);
 
   const getSalonDetails = async () => {
     setLoading(true);
@@ -33,7 +33,6 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
       );
       setService(response.data.data2);
       setTimes(response.data.data1);
-      setLoading(false);
     } catch (error) {
       console.log(error);
     } finally {
@@ -43,7 +42,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
 
   useEffect(() => {
     getSalonDetails();
-  });
+  }, [block.id]);
 
   return (
     <div
@@ -91,7 +90,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
                 fontSize: 12,
               }}
             >
-              14 Follwers
+              14 Followers
             </p>
           </div>
           <div
@@ -99,7 +98,6 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
               marginTop: -25,
             }}
           >
-            <p>{times}</p>
             <p>
               {block.line1}, {block.line2}, {block.city}.
             </p>
@@ -150,20 +148,20 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block,userId }) => {
                     line2: block.line2,
                     city: block.city,
                     contactNo: block.contactNo,
-                    time:times,
-                    userId
+                    times,
+                    userId,
                   },
                 })
               }
             >
-              <text
+              <span
                 style={{
                   fontSize: 12,
                   color: "white",
                 }}
               >
                 Book now
-              </text>
+              </span>
             </div>
           </div>
         </div>

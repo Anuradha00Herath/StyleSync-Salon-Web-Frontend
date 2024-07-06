@@ -61,7 +61,7 @@ export default function SalonUnderServiceType() {
             <p>
               Enter your dates and choose from 5,000 salons to get your service!
             </p>
-            <SearchBar/>
+            <SearchBar userId={userId}/>
           </div>
         </div>
       </div>

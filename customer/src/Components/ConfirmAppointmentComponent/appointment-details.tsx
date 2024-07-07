@@ -35,14 +35,52 @@ export function AppointmentDetails({
   const [contactNumber, setContactNumber] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
 
   const currentDate = new Date();
-  console.log(currentDate);
 
-  const handleConfirmBooking = () => {
-    alert("Booking Confirmed");
-    bookAppointment();
+  const handleConfirmBooking = async () => {
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else if (!userId) {
+      setLoading(true);
+      try {
+        const response = await axios.post(
+          "https://stylesync-backend-test.onrender.com/customer/customer/temp-customer-register",
+          {
+            email,
+            contactNo: contactNumber,
+            userName: customerName,
+            date,
+          }
+        );
+        console.log(response.data);
+        userId = response.data.data2;
+        setErrors({});
+        alert("Booking Confirmed");
+        bookAppointment();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setErrors({});
+      alert("Booking Confirmed");
+      bookAppointment();
+    }
+  };
+
+  const validateForm = () => {
+    const errors: { [key: string]: string } = {};
+    if (!customerName.trim()) errors.customerName = "Name is required";
+    if (!contactNumber.trim())
+      errors.contactNumber = "Contact number is required";
+    if (!email.trim()) errors.email = "Email is required";
+    // Add more validation logic as needed
+    return errors;
   };
 
   const getCustomerDetails = async () => {
@@ -52,18 +90,20 @@ export function AppointmentDetails({
         "https://stylesync-backend-test.onrender.com/customer/customer/get-customer-details",
         { params: { userId } }
       );
-      console.log(response.data.data[0]);
-      setCustomerName(response.data.data[0].name);
-      setEmail(response.data.data[0].email);
-      setContactNumber(response.data.data[0].contactNo);
+      const data = response.data.data[0];
+      setCustomerName(data.name);
+      setEmail(data.email);
+      setContactNumber(data.contactNo);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     getCustomerDetails();
-  });
+  }, [userId]); // Add userId as a dependency to prevent infinite loop
 
   const bookAppointment = async () => {
     setLoading(true);
@@ -71,33 +111,33 @@ export function AppointmentDetails({
       const response = await axios.post(
         "https://stylesync-backend-test.onrender.com/customer/customer/create-appointment",
         {
-          userId: userId,
-          date: date,
+          userId,
+          date,
           startTime: slotStart,
           endTime: slotEnd,
-          staffId: staffId,
-          serviceId: serviceId,
-          contactNumber: contactNumber,
+          staffId,
+          serviceId,
+          contactNumber,
           bookingTime: currentDate.toISOString(),
         }
       );
-      console.log(response.data.status);
       if (response.data.status === 200) {
         navigate("/appointment-successful", {
           state: {
             userId,
             date,
             slotStart,
-            staffId
+            staffId,
           },
         });
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Format date if it's a Date object
   const formattedDate = typeof date === "object" ? date.toDateString() : date;
 
   return (
@@ -201,6 +241,9 @@ export function AppointmentDetails({
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
               />
+              {errors.customerName && (
+                <span style={{ color: "red" }}>{errors.customerName}</span>
+              )}
               <label
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
@@ -219,6 +262,9 @@ export function AppointmentDetails({
                 value={contactNumber}
                 onChange={(e) => setContactNumber(e.target.value)}
               />
+              {errors.contactNumber && (
+                <span style={{ color: "red" }}>{errors.contactNumber}</span>
+              )}
               <label
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
@@ -237,6 +283,9 @@ export function AppointmentDetails({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {errors.email && (
+                <span style={{ color: "red" }}>{errors.email}</span>
+              )}
               <div style={{ display: "flex", flexDirection: "row-reverse" }}>
                 <button
                   style={{
@@ -249,6 +298,7 @@ export function AppointmentDetails({
                     alignSelf: "center",
                   }}
                   type="submit"
+                  disabled={loading}
                 >
                   Confirm Booking
                 </button>

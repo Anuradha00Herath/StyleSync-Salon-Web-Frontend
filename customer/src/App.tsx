@@ -10,12 +10,14 @@ import AppointmentConfirm from './Pages/SalonProfile/appointment-confirm-page';
 import SalonProfile from './Pages/SalonProfile/make-appointment-page';
 import SalonUnderServiceType from './Pages/SalonsUnderServiceType/salons-under-service-type';
 import AppointmentSuccessful from './Pages/SalonProfile/appointment-successfull';
+import TempCustomerLogin from './Pages/Home/tempLogging';
 
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path='/temporary-login' element={<TempCustomerLogin/>}/>
         <Route path="/" element={<HomePage />}/>
         <Route path="/login" element={<Login />}/>
         <Route path='/register' element={<Register/>}/>

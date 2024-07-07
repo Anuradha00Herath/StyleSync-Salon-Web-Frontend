@@ -20,6 +20,7 @@ type Props = {
   city: String;
   contactNo: String;
   openHours: String;
+  image:string
 };
 
 export function Calender({
@@ -39,6 +40,7 @@ export function Calender({
   city,
   contactNo,
   openHours,
+  image
 }: Props) {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
@@ -66,6 +68,7 @@ export function Calender({
         city: city,
         contactNo: contactNo,
         openHours: openHours,
+        image:image
       },
     });
   };

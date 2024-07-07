@@ -13,6 +13,7 @@ type Props = {
   city: String;
   contactNo: String;
   openHours: String;
+  image:string
 };
 
 export function StaffServiceList(props: Props) {
@@ -293,7 +294,7 @@ export function StaffServiceList(props: Props) {
         city={props.city}
         contactNo={props.contactNo}
         openHours={props.openHours}
-        
+        image={props.image}
       />
     </div>
   );

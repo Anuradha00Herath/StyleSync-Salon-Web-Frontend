@@ -7,7 +7,8 @@ type Props = {
   line2: String,
   city: String,
   contactNo: String,
-  openHours:String
+  openHours:String,
+  image: string,
 };
 
 export function Description(props:Props) {
@@ -40,7 +41,7 @@ export function Description(props:Props) {
               height: 200,
               width: 250,
             }}
-            src={salon}
+            src={props.image}
             alt="salon"
           />
           <div

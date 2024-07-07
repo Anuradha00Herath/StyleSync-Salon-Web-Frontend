@@ -23,6 +23,7 @@ export default function AppointmentConfirm() {
     city,
     contactNo,
     openHours,
+    image
   } = location.state;
   console.log(userId);
 
@@ -41,6 +42,7 @@ export default function AppointmentConfirm() {
               city={city}
               contactNo={contactNo}
               openHours={openHours}
+              image={image}
             />
           </div>
           <div

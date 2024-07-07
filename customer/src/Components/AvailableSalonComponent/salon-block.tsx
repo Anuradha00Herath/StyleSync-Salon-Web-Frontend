@@ -10,6 +10,7 @@ interface SalonBlockProps {
   line2: string;
   city: string;
   contactNo: string;
+  image:string;
 }
 
 interface MyComponentProps {
@@ -67,7 +68,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
             width: "40%",
             height: "100%",
           }}
-          src={salon}
+          src={block.image}
           alt="salon"
         />
         <div
@@ -150,6 +151,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
                     contactNo: block.contactNo,
                     times,
                     userId,
+                    image:block.image
                   },
                 })
               }

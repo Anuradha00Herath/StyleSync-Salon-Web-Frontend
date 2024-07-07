@@ -142,7 +142,7 @@ export function AppointmentBar(props: Props) {
                 }}
                 onClick={() =>
                   navigate("/appointment-successful", {
-                    state: { userId, staffId, startTime, date },
+                    state: { userId, staffId, slotStart: startTime, date },
                   })
                 }
               >

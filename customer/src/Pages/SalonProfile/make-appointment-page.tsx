@@ -7,7 +7,7 @@ import React from "react";
 
 export default function SalonProfile() {
   const location = useLocation();
-  const { id, name, line1, line2, city, contactNo, time, userId } =
+  const { id, name, line1, line2, city, contactNo, time, userId ,image} =
     location.state;
 
   return (
@@ -39,6 +39,7 @@ export default function SalonProfile() {
               city={city}
               contactNo={contactNo}
               openHours={time}
+              image={image}
             />
           </div>
           <div
@@ -58,6 +59,7 @@ export default function SalonProfile() {
               city={city}
               contactNo={contactNo}
               openHours={time}
+              image={image}
             />
           </div>
         </div>

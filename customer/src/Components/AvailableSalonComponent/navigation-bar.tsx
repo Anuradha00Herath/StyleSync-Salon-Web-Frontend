@@ -69,10 +69,10 @@ export function NavigationBar(props: Props) {
           <div className="navbar-center">
             <ul className="nav-links">
               <li>
-                <span onClick={() => navigate("/")}>Home</span>
+                <span onClick={() => navigate("/",{state:{id:userId}})}>Home</span>
               </li>
               <li>
-                <span onClick={() => navigate("/")}>Categories</span>
+                <span onClick={() => navigate("/",{state:{id:userId}})}>Categories</span>
               </li>
               <li>
                 <Link to="/">LKR</Link>

@@ -40,25 +40,15 @@ export default function AvailableSalonPage() {
   return (
     <div>
       <NavigationBar userId={userId} />
-      <div
+      <div className="w-full h-[600px] bg-cover"
         style={{
           backgroundImage: `url(${background})`,
-          width: "100%",
-          height: 600,
-          backgroundSize: "cover",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            paddingTop: 350,
-          }}
-        >
-          <div>
-            <h1>{serviceType}</h1>
-            <p>
+        <div className="flex flex-col justify-center items-center h-[600px]">
+          <div className="border border-black rounded-xl  px-8 py-6 backdrop-blur-lg mx-4">
+            <div className="text-black text-[32px] font-bold text-center">{serviceType}</div>
+            <p className="py-2 text-center text-base text-black font-normal">
               Enter your dates and choose from 5,000 salons to get your service!
             </p>
            <SearchBar userId={userId}/>
@@ -66,13 +56,8 @@ export default function AvailableSalonPage() {
         </div>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div style={{ width: "80%" }}>
+      <div className="flex justify-center items-center">
+        <div className="w-full px-4 md:w-[90%] lg:w-[80%] mx-auto">
           {serviceSet.map((salon, index) => (
             <SalonSet key={index} salon={salon} userId={userId} />
           ))}

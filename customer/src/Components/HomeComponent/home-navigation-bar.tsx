@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../HomeComponent/home-navigation-bar.css";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -45,7 +44,7 @@ export function HomeNavigationBar() {
         
         <div className="flex justify-end items-center">
         <div className="bg-primary h-35px w-[100px] items-center justify-center">
-          <Link to='/home' className="text-white text-lg font-medium py-3 px-4 font-montserrat">Login</Link>
+          <Link to='/login' className="text-white text-lg font-medium py-3 px-4 font-montserrat">Login</Link>
             
           </div>
           <div className="bg-white h-[35px] flex justify-center items-center rounded-md">

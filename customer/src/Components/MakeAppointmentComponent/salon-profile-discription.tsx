@@ -3,17 +3,16 @@ import salon from "../../assets/salon.jpg";
 import React from "react";
 
 type Props = {
-  name: String,
-  line1: String,
-  line2: String,
-  city: String,
-  contactNo: String,
-  openHours:String,
-  image: string,
+  name: String;
+  line1: String;
+  line2: String;
+  city: String;
+  contactNo: String;
+  openHours: String;
+  image: string;
 };
 
-export function Description(props:Props) {
-
+export function Description(props: Props) {
   const navigate = useNavigate();
   return (
     <div
@@ -55,9 +54,8 @@ export function Description(props:Props) {
           >
             <h2>{props.name}</h2>
             <p>
-              Small description about their salon. bla bkanskc hja
-              jhcjahabxsabch nacsbakjha knasjkcvahk babc nabab khabdcsa
-              kjhcacbsajkcnsan.
+              Manage your salon effortlessly with our app: book appointments,
+              track services, and connect with staff seamlessly.
             </p>
           </div>
           <div
@@ -68,11 +66,13 @@ export function Description(props:Props) {
             }}
           ></div>
           <div>
-            <p>19 Followers</p>
-            <p>{props.line1}, {props.line2}, {props.city}</p>
+            <p></p>
+            <p>
+              {props.line1}, {props.line2}, {props.city}
+            </p>
             <p>{props.contactNo}</p>
             <p>{props.openHours}</p>
-            <div
+            {/* <div
               style={{
                 backgroundColor: "black",
                 width: 150,
@@ -81,7 +81,7 @@ export function Description(props:Props) {
                 justifyContent: "center",
                 alignItems: "center",
               }}
-              onClick={()=>navigate('/map-view')}
+              onClick={() => navigate("/map-view")}
             >
               <span
                 style={{
@@ -91,7 +91,7 @@ export function Description(props:Props) {
               >
                 View Map
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

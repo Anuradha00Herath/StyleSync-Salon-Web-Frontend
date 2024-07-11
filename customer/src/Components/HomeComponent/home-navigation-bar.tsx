@@ -47,9 +47,6 @@ export function HomeNavigationBar() {
           <Link to='/login' className="text-white text-lg font-medium py-3 px-4 font-montserrat">Login</Link>
             
           </div>
-          <div className="bg-white h-[35px] flex justify-center items-center rounded-md">
-            <Link to='/register' className="text-[#232528] font-medium text-lg py-3 px-4 font-montserrat">Register</Link>
-          </div>
         </div>
         </div>
 

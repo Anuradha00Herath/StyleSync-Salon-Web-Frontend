@@ -49,7 +49,7 @@ export default function AvailableSalonPage() {
           <div className="border border-black rounded-xl  px-8 py-6 backdrop-blur-lg mx-4">
             <div className="text-black text-[32px] font-bold text-center">{serviceType}</div>
             <p className="py-2 text-center text-base text-black font-normal">
-              Enter your dates and choose from 5,000 salons to get your service!
+              Enter your dates and choose salons to get your service!
             </p>
            <SearchBar userId={userId}/>
           </div>

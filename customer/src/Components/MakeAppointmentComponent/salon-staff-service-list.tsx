@@ -97,11 +97,6 @@ export function StaffServiceList(props: Props) {
       setCloseTime(response.data.data[0].closeHour[0]);
       setDuration(response.data.data[0].duration[0]);
       setIsOpen(response.data.data[0].isOpen[0]);
-
-      // Debugging logs
-      console.log("Start Time:", response.data.data[0].openHour[0]);
-      console.log("Close Time:", response.data.data[0].closeHour[0]);
-      console.log("Duration:", response.data.data[0].duration[0]);
       setBooked(response.data.data2);
       console.log("Breaks", response.data.data3);
     } catch (error) {

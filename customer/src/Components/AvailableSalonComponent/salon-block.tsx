@@ -62,7 +62,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
                 fontSize: 12,
               }}
             >
-              14 Followers
+              
             </p>
           </div>
           <div
@@ -82,26 +82,6 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
               justifyContent: "space-between",
             }}
           >
-            <div
-              style={{
-                height: 30,
-                width: 100,
-                backgroundColor: "black",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <a
-                style={{
-                  fontSize: 12,
-                  color: "white",
-                }}
-                href="/"
-              >
-                Follow
-              </a>
-            </div>
             <div
               style={{
                 height: 30,

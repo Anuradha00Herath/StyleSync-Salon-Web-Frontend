@@ -199,7 +199,7 @@ export function AppointmentDetails({
   const formattedDate = typeof date === "object" ? date.toDateString() : date;
 
   return (
-    <div style={{ width: "100%", backgroundColor: "white" }}>
+    <div className="w-full bg-white">
       <div
         style={{
           backgroundColor: "white",
@@ -212,7 +212,7 @@ export function AppointmentDetails({
         }}
       >
         <div style={{ width: "50%" }}>
-          <h2 style={{ textAlign: "center" }}>Appointment Details</h2>
+          <h2 style={{ textAlign: "center" }} className="text-lg font-medium py-2">Appointment Details</h2>
           <img src={staffImage} alt="staff" style={{
             width: "100px",
             height: "100px",
@@ -220,11 +220,11 @@ export function AppointmentDetails({
             margin: "0 auto 10px",
             borderRadius: "50%",
           }}/>
-          <h3 style={{ textAlign: "center" }}>{staffName}</h3>
-          <table
+          <h3 style={{ textAlign: "center" }} className="text-lg font-medium my-3">{staffName}</h3>
+          <table className="rounded-md"
             style={{
               width: "70%",
-              marginBottom: "20px",
+              
               border: "1px solid #e0e0e0",
               borderCollapse: "collapse",
               margin: "0 auto 10px",
@@ -271,7 +271,7 @@ export function AppointmentDetails({
           style={{ width: "50%", display: "flex", justifyContent: "center" }}
         >
           <div style={{ width: "80%" }}>
-            <h2 style={{ textAlign: "center" }}>Your Details</h2>
+            <h2 style={{ textAlign: "center" }} className="text-lg font-medium py-3">Your Details</h2>
             <form
               style={{ display: "flex", flexDirection: "column" }}
               onSubmit={(e) => {

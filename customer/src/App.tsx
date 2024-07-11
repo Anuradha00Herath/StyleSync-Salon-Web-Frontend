@@ -11,7 +11,7 @@ import SalonProfile from './Pages/SalonProfile/make-appointment-page';
 import SalonUnderServiceType from './Pages/SalonsUnderServiceType/salons-under-service-type';
 import AppointmentSuccessful from './Pages/SalonProfile/appointment-successfull';
 import TempCustomerLogin from './Pages/Home/tempLogging';
-import MapView from './Pages/Map/map';
+// /import MapView from './Pages/Map/map';
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Route path="/confirm-appointment" element={<AppointmentConfirm/>}/>
         <Route path="/available-salons-under-service-type" element={<SalonUnderServiceType/>}/>
         <Route path="/appointment-successful" element={<AppointmentSuccessful/>}/>
-        <Route path='/map-view' element={<MapView/>}/>
+        {/* <Route path='/map-view' element={<MapView/>}/> */}
       </Routes>
     </Router>
   );

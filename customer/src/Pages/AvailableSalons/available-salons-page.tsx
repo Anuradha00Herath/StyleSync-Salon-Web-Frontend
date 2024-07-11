@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { SalonSet } from "../../Components/AvailableSalonComponent/salon-set";
 import SearchBar from "../../Components/AvailableSalonComponent/search-salon";
+import { CircularProgress } from "@mui/material";
 
 export default function AvailableSalonPage() {
   const navigate = useNavigate();
@@ -37,6 +38,14 @@ export default function AvailableSalonPage() {
     getAllCategories();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center w-full min-h-screen">
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  }
+
   return (
     <div>
       <NavigationBar userId={userId} />
@@ -49,7 +58,7 @@ export default function AvailableSalonPage() {
           <div className="border border-black rounded-xl  px-8 py-6 backdrop-blur-lg mx-4">
             <div className="text-black text-[32px] font-bold text-center">{serviceType}</div>
             <p className="py-2 text-center text-base text-black font-normal">
-              Enter your dates and choose from 5,000 salons to get your service!
+              Enter your dates and choose to get your service!
             </p>
            <SearchBar userId={userId}/>
           </div>

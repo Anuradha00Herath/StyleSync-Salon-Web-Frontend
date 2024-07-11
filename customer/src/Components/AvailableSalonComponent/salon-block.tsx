@@ -46,72 +46,34 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
   }, [block.id]);
 
   return (
-    <div className="w-[45%] my-4  ">
+    <div className="md:w-[45%] my-4 bg-gray-200 rounded-xl w-full">
       <div className="flex flex-row items-center">
-        <img className="w-[40%] h-full"
-          src={block.image}
+        <img className="w-[40%]  rounded-xl h-[180px]"
+          src={block.image ? block.image : 'https://via.placeholder.com/100'}
           alt="salon"
         />
         <div className="pl-4"
         >
           <div className="flex flex-col justify-start items-start">
 
-            <h4>{block.name}</h4>
-            <p
-              style={{
-                fontSize: 12,
-              }}
-            >
-              14 Followers
-            </p>
+            <div className="text-black font-bold text-xl">{block.name}</div>
+            
           </div>
-          <div
-            style={{
-              marginTop: 10,
-            }}
-          >
-            <p>
+          <div className="py-2"><p className="text-black font-normal text-base">
               {block.line1}, {block.line2}, {block.city}.
             </p>
             <p>{block.contactNo}</p>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row-reverse",
-              justifyContent: "space-between",
-            }}
-          >
-            <div
-              style={{
-                height: 30,
-                width: 100,
-                backgroundColor: "black",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <a
-                style={{
-                  fontSize: 12,
-                  color: "white",
-                }}
+          <div className="flex flex-row justify-start items-start gap-2">
+            <div className="h-8 w-24 bg-black flex justify-center items-center rounded-md">
+
+              <a className="font-normal text-sm text-white"
                 href="/"
               >
                 Follow
               </a>
             </div>
-            <div
-              style={{
-                height: 30,
-                width: 100,
-                marginRight: 10,
-                backgroundColor: "black",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+            <div className="h-8 w-24 bg-black flex justify-center items-center rounded-md cursor-pointer"
               onClick={() =>
                 navigate("/make-appointment", {
                   state: {
@@ -128,11 +90,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
                 })
               }
             >
-              <span
-                style={{
-                  fontSize: 12,
-                  color: "white",
-                }}
+              <span className="font-normal text-sm text-white"
               >
                 Book now
               </span>

@@ -77,33 +77,10 @@ export function Calender({
   };
 
   return (
-    <div
-      style={{
-        width: "27%",
-        backgroundColor: "white",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <label
-            style={{
-              marginTop: 20,
-            }}
+    <div className="w-[30%] bg-white flex justify-center rounded-md max-h-[400px]">
+      <div className="flex flex-col items-center ">
+        <div className="flex flex-col justify-center items-center">
+          <label className="my-4 font-medium"
             htmlFor="datePicker"
           >
             Select Date:
@@ -120,16 +97,7 @@ export function Calender({
         {error && (
           <div style={{ color: "red", marginTop: 10 }}>{error}</div>
         )}
-        <button
-          style={{
-            height: 40,
-            width: 150,
-            backgroundColor: "black",
-            marginTop: 20,
-            color: "white",
-            textDecoration: "none",
-            cursor: "pointer",
-          }}
+        <button className="h-10 w-[150px] bg-black rounded-md text-white cursor-pointer my-2"
           onClick={handleBooking}
         >
           Book Time Slot

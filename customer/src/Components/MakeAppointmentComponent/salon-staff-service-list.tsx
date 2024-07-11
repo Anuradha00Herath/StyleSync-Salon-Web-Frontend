@@ -155,47 +155,19 @@ export function StaffServiceList(props: Props) {
   console.log(formatDate(selectedDate));
   console.log(dayName);
 
+  
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          width: "27%",
-          backgroundColor: "white",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "90%",
-          }}
-        >
+    <div className="flex md:flex-row justify-between flex-col w-full py-10">
+      <div className="w-[30%] bg-white flex justify-center max-h-[400px] rounded-md">
+        <div className="w-full px-3">
           <div>
-            <h5
-              style={{
-                margin: "5px",
-                padding: "0 5px",
-              }}
-            >
+            <div className="pt-10 px-2 text-base font-semibold">
               Select Staff:
-            </h5>
+            </div>
             {salonStaff.map((staff: any) => (
-              <div
+              <div className="flex flex-row text-black cursor-pointer font-medium text-base py-1"
                 key={staff.id}
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  color: "black",
-                  textDecoration: "none",
-                  cursor: "pointer",
-                }}
               >
                 <input
                   type="radio"
@@ -204,12 +176,7 @@ export function StaffServiceList(props: Props) {
                   value={staff.name}
                   onClick={() => handleStaffClick(staff.id, staff.name, staff.image)}
                 />
-                <p
-                  style={{
-                    margin: "4px 0",
-                    padding: "0 5px",
-                  }}
-                >
+                <p className="py-1 ml-2">
                   {staff.name}
                 </p>
               </div>
@@ -217,24 +184,13 @@ export function StaffServiceList(props: Props) {
           </div>
           <hr />
           <div>
-            <h5
-              style={{
-                margin: "5px",
-                padding: "0 5px",
-              }}
+            <div className="py-2 px-2 text-base font-semibold"
             >
               Select Service:
-            </h5>
+            </div>
             {staffServices.map((service: any) => (
-              <div
+              <div className="flex flex-row text-black cursor-pointer"
                 key={service.id}
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  color: "black",
-                  textDecoration: "none",
-                  cursor: "pointer",
-                }}
               >
                 <input
                   type="radio"
@@ -245,20 +201,10 @@ export function StaffServiceList(props: Props) {
                     handleServiceClick(service.id, service.name, service.price)
                   }
                 />
-                <p
-                  style={{
-                    margin: "4px 0",
-                    padding: "0 5px",
-                  }}
-                >
+                <p className="ml-2 py-1">
                   {service.name}
                 </p>
-                <p
-                  style={{
-                    margin: "4px 0",
-                    padding: "0 5px",
-                  }}
-                >
+                <p className="ml-1 py-1 font-[600]">
                   - LKR {service.price}
                 </p>
               </div>

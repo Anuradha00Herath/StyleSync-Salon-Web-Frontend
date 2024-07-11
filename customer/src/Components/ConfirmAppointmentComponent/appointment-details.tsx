@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import nodemailer from 'nodemailer';
 
 type AppointmentDetailsProps = {
   date: Date | string;
@@ -21,24 +20,8 @@ type AppointmentDetailsProps = {
   openHours: string;
   staffImage:string
 };
-const transporter = nodemailer.createTransport({
-  service: 'gmail', // You can use any email service
-  auth: {
-    user: 'stylesync26@gmail.com',
-    pass: 'kgjm detu kfpo opsq',
-  },
-});
 
-async function sendOTPEmail(email: string, link: string) {
-  const mailOptions = {
-    from: 'stylesync26@gmail.com',
-    to: email,
-    subject: 'Your OTP Code',
-    text: `Your OTP link is ${link}`,
-  };
 
-  return transporter.sendMail(mailOptions);
-}
 export function AppointmentDetails({
   date,
   staffId,

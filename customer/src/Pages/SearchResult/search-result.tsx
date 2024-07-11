@@ -82,7 +82,7 @@ export default function SearchResultPage() {
               alignItems: "center",
             }}
           >
-            <h4>{blocks.length} Results Among 5000 Salons</h4>
+            <h4>{blocks.length} Results</h4>
           </div>
           <div style={{ flexWrap: "wrap", display: "flex", flexDirection: "row" }}>
             {blocks.map((block, index) => (

@@ -3,17 +3,16 @@ import salon from "../../assets/salon.jpg";
 import React from "react";
 
 type Props = {
-  name: String,
-  line1: String,
-  line2: String,
-  city: String,
-  contactNo: String,
-  openHours:String,
-  image: string,
+  name: String;
+  line1: String;
+  line2: String;
+  city: String;
+  contactNo: String;
+  openHours: String;
+  image: string;
 };
 
-export function Description(props:Props) {
-
+export function Description(props: Props) {
   const navigate = useNavigate();
   return (
     <div className="flex justify-center items-center my-10">
@@ -37,13 +36,21 @@ export function Description(props:Props) {
             <p className="text-black font-normal text-base">{props.line1}, {props.line2}, {props.city}</p>
             <p className="text-black font-normal text-base">{props.contactNo}</p>
             <p>{props.openHours}</p>
-            <div className="bg-black rounded-md w-[150px] h-10 flex justify-center items-center cursor-pointer"
-              onClick={()=>navigate('/map-view')}
+            {/* <div
+              style={{
+                backgroundColor: "black",
+                width: 150,
+                height: 40,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              onClick={() => navigate("/map-view")}
             >
               <span className="text-white text-base ">
                 View Map
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

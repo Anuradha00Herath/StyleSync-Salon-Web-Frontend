@@ -53,14 +53,13 @@ export const SalonSetTwo: React.FC<MyComponentProps> = ({ salon , userId}) => {
       >
         <h4>Salons in {salon.name}</h4>
         <div onClick={()=>navigate('/available-salons-under-service-type',{state:{serviceType: salon.name}})}>
-          <a
+          <p
             style={{
               color: "black",
             }}
-            href="http://localhost:3000/available-salons-under-service-type"
           >
             View more
-          </a>
+          </p>
         </div>
       </div>
       <div

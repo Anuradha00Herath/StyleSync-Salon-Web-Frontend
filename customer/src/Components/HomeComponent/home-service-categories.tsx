@@ -24,7 +24,7 @@ export function ServiceCategories(props: Props) {
       <button className="bg-primary py-2 w-full cursor-pointer text-white hover:text-primary font-normal rounded-md hover:bg-[#c9a899] hover:font-semibold text-sm hover:text-md font-montserrat "
               onClick={()=>navigate('/available-salons',{state:{serviceType: props.serviceType, userId:props.userId}})}
             >
-              <a href="http://localhost:3000/available-salons">Make an appointment</a>
+              <a href="/available-salons">Make an appointment</a>
       </button>
       </div>
       

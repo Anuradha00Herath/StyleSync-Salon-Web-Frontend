@@ -65,7 +65,7 @@ export function NavigationBar(props: Props) {
 
   return (
     <div>
-      <div className="mx-[4%] w-[92%] max-w-[1900px]  fixed  md:top-5 top-3 z-[999] bg-[#2E2528] h-[70px] rounded-[8px] px-5 sm:px-8 flex flex-row items-center py-4 justify-between">
+      <div className="w-full max-w-[1900px] bg-[#2E2528] h-[70px] px-5 sm:px-8 flex flex-row items-center py-4 justify-between">
         <nav className="w-full hidden lg:flex justify-between items-center  mx-10 text-white" >
           <div >
             <Link to="/" className="text-white font-semibold text-2xl font-montserrat">

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import salon from "../../assets/salon.jpg";
 import React from "react";
 
@@ -12,6 +13,8 @@ type Props = {
 };
 
 export function Description(props:Props) {
+
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -78,16 +81,16 @@ export function Description(props:Props) {
                 justifyContent: "center",
                 alignItems: "center",
               }}
+              onClick={()=>navigate('/map-view')}
             >
-              <a
+              <span
                 style={{
                   color: "white",
                   textDecoration: "none",
                 }}
-                href="hcjsd"
               >
                 View Map
-              </a>
+              </span>
             </div>
           </div>
         </div>

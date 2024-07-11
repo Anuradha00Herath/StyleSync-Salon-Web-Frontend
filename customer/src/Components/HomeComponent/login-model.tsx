@@ -226,6 +226,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
           const verifyResponse = await axios.put(verifyUrl, {
             userId: responseId,
             otp: userInput,
+            email:email
           });
 
           if (verifyResponse.status === 200) {

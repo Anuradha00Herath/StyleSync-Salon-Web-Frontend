@@ -34,6 +34,7 @@ export function StaffServiceList(props: Props) {
   const [staffName, setStaffName] = useState<string | null>(" ");
   const [booked, setBooked] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
+  const [staffImage,setStaffImage] = useState("");
   const userId = props.userId;
 
   const getAllCategories = async () => {
@@ -110,10 +111,11 @@ export function StaffServiceList(props: Props) {
     }
   };
 
-  const handleStaffClick = (staffId: Number, staffName: string) => {
+  const handleStaffClick = (staffId: Number, staffName: string,image:string) => {
     getAllServices(staffId);
     setStaffId(staffId);
     setStaffName(staffName);
+    setStaffImage(image);
   };
 
   const handleServiceClick = (
@@ -200,7 +202,7 @@ export function StaffServiceList(props: Props) {
                   id="staff"
                   name="staff"
                   value={staff.name}
-                  onClick={() => handleStaffClick(staff.id, staff.name)}
+                  onClick={() => handleStaffClick(staff.id, staff.name, staff.image)}
                 />
                 <p
                   style={{
@@ -295,6 +297,7 @@ export function StaffServiceList(props: Props) {
         contactNo={props.contactNo}
         openHours={props.openHours}
         image={props.image}
+        staffImage={staffImage}
       />
     </div>
   );

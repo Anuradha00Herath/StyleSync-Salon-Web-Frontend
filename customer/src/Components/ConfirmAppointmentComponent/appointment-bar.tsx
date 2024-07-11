@@ -98,58 +98,64 @@ export function AppointmentBar(props: Props) {
   );
   return (
     <div>
-      {isCancel ? (
+      {isReject ? (
         <div></div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            backgroundColor: "#c2bd88",
-            width: "100%",
-            alignItems: "center",
-            height: 50,
-            justifyContent: "center",
-          }}
-        >
-          <div
-            style={{
-              width: "80%",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <p>
-              You have an appointment with the salon of{" "}
-              <b>{props.appointment.salon.join(", ")}</b> on{" "}
-              <b>{formattedDate}</b> at <b>{props.appointment.startTime}:00</b>{" "}
-              Hour
-            </p>
-            <p>Times remaining: {timeRemaining}</p>
-            <div>
-              <button
+        <div>
+          {isCancel ? (
+            <div></div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                backgroundColor: "#c2bd88",
+                width: "100%",
+                alignItems: "center",
+                height: 50,
+                justifyContent: "center",
+              }}
+            >
+              <div
                 style={{
-                  marginLeft: 30,
-                  textDecoration: "underline",
+                  width: "80%",
+                  display: "flex",
+                  justifyContent: "space-between",
                 }}
-                onClick={handleCancel}
               >
-                Cancel
-              </button>
-              <button
-                style={{
-                  marginLeft: 30,
-                  textDecoration: "underline",
-                }}
-                onClick={() =>
-                  navigate("/appointment-successful", {
-                    state: { userId, staffId, slotStart: startTime, date },
-                  })
-                }
-              >
-                More Info
-              </button>
+                <p>
+                  You have an appointment with the salon of{" "}
+                  <b>{props.appointment.salon.join(", ")}</b> on{" "}
+                  <b>{formattedDate}</b> at{" "}
+                  <b>{props.appointment.startTime}:00</b> Hour
+                </p>
+                <p>Times remaining: {timeRemaining}</p>
+                <div>
+                  <button
+                    style={{
+                      marginLeft: 30,
+                      textDecoration: "underline",
+                    }}
+                    onClick={handleCancel}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    style={{
+                      marginLeft: 30,
+                      textDecoration: "underline",
+                    }}
+                    onClick={() =>
+                      navigate("/appointment-successful", {
+                        state: { userId, staffId, slotStart: startTime, date },
+                      })
+                    }
+                  >
+                    More Info
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>

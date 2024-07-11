@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import nodemailer from 'nodemailer';
 
 type AppointmentDetailsProps = {
   date: Date | string;
@@ -18,8 +19,26 @@ type AppointmentDetailsProps = {
   city: string;
   contactNo: string;
   openHours: string;
+  staffImage:string
 };
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // You can use any email service
+  auth: {
+    user: 'stylesync26@gmail.com',
+    pass: 'kgjm detu kfpo opsq',
+  },
+});
 
+async function sendOTPEmail(email: string, link: string) {
+  const mailOptions = {
+    from: 'stylesync26@gmail.com',
+    to: email,
+    subject: 'Your OTP Code',
+    text: `Your OTP link is ${link}`,
+  };
+
+  return transporter.sendMail(mailOptions);
+}
 export function AppointmentDetails({
   date,
   staffId,
@@ -30,6 +49,7 @@ export function AppointmentDetails({
   slotStart,
   slotEnd,
   userId: initialUserId,
+  staffImage
 }: AppointmentDetailsProps) {
   const [customerName, setCustomerName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
@@ -38,9 +58,11 @@ export function AppointmentDetails({
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [userId, setUserId] = useState(initialUserId);
   const [isVerified, setIsVerified] = useState(false);
+  const [isTemporary,setIsTemporary] = useState(false);
   const navigate = useNavigate();
 
   const currentDate = new Date();
+
 
   const handleConfirmBooking = async () => {
     const validationErrors = validateForm();
@@ -95,6 +117,7 @@ export function AppointmentDetails({
       setEmail(data.email);
       setContactNumber(data.contactNo);
       setIsVerified(data.isVerified);
+      setIsTemporary(data.isTemporary);
     } catch (error) {
       console.log(error);
     } finally {
@@ -114,7 +137,6 @@ export function AppointmentDetails({
       const url =
         "https://stylesync-backend-test.onrender.com/customer/customer/generate-otp";
       const response = await axios.put(url, { userId: responseId, email });
-
       if (response.status === 200) {
         const userInput = prompt("Enter OTP sent to your email", "");
         if (userInput !== null) {
@@ -123,6 +145,7 @@ export function AppointmentDetails({
           const verifyResponse = await axios.put(verifyUrl, {
             userId: responseId,
             otp: userInput,
+            email:email
           });
 
           if (verifyResponse.status === 200) {
@@ -151,6 +174,10 @@ export function AppointmentDetails({
   const bookAppointment = async (userId: string, isVerified:boolean) => {
     if (!isVerified) {
       generateOTP(userId);
+      return;
+    }
+    if(isTemporary){
+      alert("You can't book another appointment");
       return;
     }
 
@@ -203,15 +230,13 @@ export function AppointmentDetails({
       >
         <div style={{ width: "50%" }}>
           <h2 style={{ textAlign: "center" }}>Appointment Details</h2>
-          <div
-            style={{
-              width: "100px",
-              height: "100px",
-              backgroundColor: "#e0e0e0",
-              margin: "0 auto 10px",
-              borderRadius: "50%",
-            }}
-          ></div>
+          <img src={staffImage} alt="staff" style={{
+            width: "100px",
+            height: "100px",
+            backgroundColor: "#e0e0e0",
+            margin: "0 auto 10px",
+            borderRadius: "50%",
+          }}/>
           <h3 style={{ textAlign: "center" }}>{staffName}</h3>
           <table
             style={{

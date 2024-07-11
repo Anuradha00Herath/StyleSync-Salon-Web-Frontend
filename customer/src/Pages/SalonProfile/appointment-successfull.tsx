@@ -31,6 +31,7 @@ export default function AppointmentSuccessful() {
   const [customerContact, setCustomerContact] = useState("");
   const [openHours,setOpenHours] = useState("");
   const [isCancel,setIsCancel] = useState(false);
+  const [isReject,setIsReject] = useState(false);
 
 
   const formattedDate = typeof date === "object" ? date.toDateString() : date;
@@ -67,6 +68,7 @@ export default function AppointmentSuccessful() {
       setCustomerContact(response.data.data[0].customerContactNo);
       setOpenHours(response.data.data[0].openHours);
       setIsCancel(response.data.data[0].isCancel);
+      setIsReject(response.data.data[0].isReject);
       
     }catch(error){
       console.log(error);
@@ -93,7 +95,20 @@ export default function AppointmentSuccessful() {
         }}
       >
         <div style={{ width: "50%" }}>
-          {isCancel?<div
+          {isReject? <div
+            style={{
+              width: "100%",
+              backgroundColor: "#fa9696",
+            }}
+          >
+            <p
+              style={{
+                textAlign: "center",
+              }}
+            >
+              Appointment is rejected
+            </p>
+          </div>:<div>{isCancel?<div
             style={{
               width: "100%",
               backgroundColor: "#fa9696",
@@ -119,7 +134,8 @@ export default function AppointmentSuccessful() {
             >
               Appointment Sent Successfully
             </p>
-          </div>}
+          </div>}</div>}
+          
           <h2 style={{ textAlign: "center" }}>Appointment Details</h2>
           
           <table

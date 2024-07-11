@@ -45,7 +45,7 @@ export function AppointmentDetails({
   const navigate = useNavigate();
 
   const currentDate = new Date();
-
+let link:String;
 
   const handleConfirmBooking = async () => {
     const validationErrors = validateForm();
@@ -67,6 +67,7 @@ export function AppointmentDetails({
           }
         );
         const tempUserId = response.data.data2;
+        link = response.data.data;
         setUserId(tempUserId);
         bookAppointment(tempUserId,isVerified);
       } else {
@@ -128,7 +129,8 @@ export function AppointmentDetails({
           const verifyResponse = await axios.put(verifyUrl, {
             userId: responseId,
             otp: userInput,
-            email:email
+            email:email,
+            link
           });
 
           if (verifyResponse.status === 200) {

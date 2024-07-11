@@ -154,7 +154,7 @@ export function StaffServiceList(props: Props) {
 
   return (
     <div className="flex md:flex-row justify-between flex-col w-full py-10">
-      <div className="w-[30%] bg-white flex justify-center max-h-[400px] rounded-md">
+      <div className="w-[30%] bg-white flex justify-center rounded-md">
         <div className="w-full px-3">
           <div>
             <div className="pt-10 px-2 text-base font-semibold">

@@ -136,7 +136,7 @@ export default function AppointmentSuccessful() {
             </p>
           </div>}</div>}
           
-          <h2 style={{ textAlign: "center" }}>Appointment Details</h2>
+          <h2 style={{ textAlign: "center" }} className="text-lg font-bold font-montserrat py-4">Appointment Details</h2>
           
           <table
             style={{
@@ -146,8 +146,8 @@ export default function AppointmentSuccessful() {
             }}
           >
             <tbody>
-              <h4>Salon Details</h4>
-              <img src={salonImage} alt="salon profile" width="100px" height="100px"/>
+              <div className="text-lg font-bold py-2">Salon Details</div>
+              <img src={salonImage} alt="salon profile" width="150px" height="150px" className="rounded-md py-2"/>
               <tr>
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px"}}
@@ -184,8 +184,8 @@ export default function AppointmentSuccessful() {
                   {line1},{line2},{city}.
                 </td>
               </tr>
-              <h4>Staff Details</h4>
-              <img src={staffImage} alt="salon profile" width="100px" height="100px"/>
+              <div className="text-lg font-bold py-2 mt-10">Staff Details</div>
+              <img src={staffImage} alt="salon profile" width="150px" height="150px" className="rounded-md py-2"/>
               <tr>
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px" }}
@@ -210,7 +210,7 @@ export default function AppointmentSuccessful() {
                   {salonContact}
                 </td>
               </tr>
-              <h4>Appointment Details</h4>
+              <div className="text-lg font-bold py-2 mt-10">Appointment Details</div>
               <tr>
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px" }}
@@ -259,16 +259,8 @@ export default function AppointmentSuccessful() {
                   {slotStart} - {slotEnd}
                 </td>
               </tr>
-              <h4>Your Details</h4>
-              <div
-            style={{
-              width: "100px",
-              height: "100px",
-              backgroundColor: "#e0e0e0",
+              <div className="text-lg font-bold py-2 mt-10">Your Details</div>
               
-              
-            }}
-          ></div>
               <tr>
                 <td
                   style={{ borderBottom: "1px solid #e0e0e0", padding: "8px" }}

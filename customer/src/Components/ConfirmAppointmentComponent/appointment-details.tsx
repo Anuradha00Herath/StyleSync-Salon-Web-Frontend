@@ -345,16 +345,7 @@ let link:String;
                 <span style={{ color: "red" }}>{errors.email}</span>
               )}
               <div style={{ display: "flex", flexDirection: "row-reverse" }}>
-                <button
-                  style={{
-                    height: 40,
-                    width: 150,
-                    backgroundColor: "#333",
-                    color: "white",
-                    border: "none",
-                    cursor: "pointer",
-                    alignSelf: "center",
-                  }}
+                <button className="h-10 w-[150px] bg-black rounded-md cursor-pointer items-center text-white"
                   type="submit"
                   disabled={loading}
                 >

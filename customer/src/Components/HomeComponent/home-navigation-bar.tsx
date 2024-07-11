@@ -30,9 +30,7 @@ export function HomeNavigationBar() {
             <li>
               <a href="#service">Services</a>
             </li>
-            <li>
-              <a href="/#article">Articles</a>
-            </li>
+            
             <li>
               <a href="/#faqs">FAQs</a>
             </li>
@@ -86,9 +84,6 @@ export function HomeNavigationBar() {
                       </li>
                       <li className="py-2" onClick={toggleMenu}>
                         <a href="#service">Services</a>
-                      </li>
-                      <li className="py-2" onClick={toggleMenu}>
-                        <a href="/#article">Articles</a>
                       </li>
                       <li className="py-2" onClick={toggleMenu}>
                         <a href="/#faqs">FAQs</a>

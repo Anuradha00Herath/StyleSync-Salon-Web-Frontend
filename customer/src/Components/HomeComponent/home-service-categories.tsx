@@ -22,7 +22,7 @@ export function ServiceCategories(props: Props) {
       <p className="text-lg font-normal text-black py-2">{props.count} Salons Available</p>
       <div className="w-[90%] mx-auto py-6">
       <button className="bg-primary py-2 w-full cursor-pointer text-white hover:text-primary font-normal rounded-md hover:bg-[#c9a899] hover:font-semibold text-sm hover:text-md font-montserrat "
-              onClick={()=>navigate('/available-salons-under-service-type',{state:{serviceType: props.serviceType, userId:props.userId}})}
+              onClick={()=>navigate('/available-salons',{state:{serviceType: props.serviceType, userId:props.userId}})}
             >
               <p>Make an appointment</p>
       </button>

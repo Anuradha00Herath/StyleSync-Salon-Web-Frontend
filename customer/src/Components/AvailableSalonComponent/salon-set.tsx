@@ -44,33 +44,17 @@ export const SalonSet = (props:Props) => {
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h4>Salons in {salon.serviceType}</h4>
+      <div className="flex flex-row justify-between items-center">
+        <div className="py-4 text-black text-base font-medium">Salons in {salon.serviceType}</div>
         <div onClick={()=>navigate('/available-salons-under-service-type',{state:{serviceType: salon.serviceType, userId}})}>
-          <a
-            style={{
-              color: "black",
-            }}
+          <a className="py-4 text-black text-base font-medium"
             href="http://localhost:3000/available-salons-under-service-type"
           >
             View more
           </a>
         </div>
       </div>
-      <div
-        style={{
-          flexWrap: "wrap",
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
+      <div className="flex flex-wrap justify-between items-center">
         {serviceBlock.map((block, index: React.Key) => (
           <SalonBlock block={block} key={index} userId={userId}/>
         ))}

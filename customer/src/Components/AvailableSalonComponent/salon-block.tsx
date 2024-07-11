@@ -46,45 +46,16 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
   }, [block.id]);
 
   return (
-    <div
-      style={{
-        width: "46%",
-        backgroundColor: "#f8f5f3",
-        marginTop: 20,
-        paddingLeft: 10,
-        paddingBottom: 10,
-        marginLeft: 20,
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <img
-          style={{
-            width: "40%",
-            height: "100%",
-          }}
+    <div className="w-[45%] my-4  ">
+      <div className="flex flex-row items-center">
+        <img className="w-[40%] h-full"
           src={block.image}
           alt="salon"
         />
-        <div
-          style={{
-            marginLeft: 20,
-            width: "55%",
-          }}
+        <div className="pl-4"
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <div className="flex flex-col justify-start items-start">
+
             <h4>{block.name}</h4>
             <p
               style={{
@@ -96,7 +67,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
           </div>
           <div
             style={{
-              marginTop: -25,
+              marginTop: 10,
             }}
           >
             <p>
@@ -108,6 +79,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
             style={{
               display: "flex",
               flexDirection: "row-reverse",
+              justifyContent: "space-between",
             }}
           >
             <div

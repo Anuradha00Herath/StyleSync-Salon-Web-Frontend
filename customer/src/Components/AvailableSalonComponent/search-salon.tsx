@@ -20,15 +20,15 @@ export default function SearchBar({ userId }: SearchBarProps) {
 
   return (
     <div style={{ paddingTop: 20 }}>
-      <form onSubmit={handleSearch}>
-        <input
+      <form onSubmit={handleSearch} className="flex flex-col justify-center items-center">
+        <input className="px-4 rounded-xl"
           style={{ height: 40, width: 300 }}
           type="text"
           placeholder="Search salon name or location"
           value={key}
           onChange={(e) => setKey(e.target.value)}
         />
-        <input
+        <input className="px-4 rounded-xl my-4 " 
           style={{ height: 40, width: 180, backgroundColor: "black", color: "white" }}
           type="submit"
           value="Search"

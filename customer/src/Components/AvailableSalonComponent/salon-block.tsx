@@ -65,14 +65,6 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
             <p>{block.contactNo}</p>
           </div>
           <div className="flex flex-row justify-start items-start gap-2">
-            <div className="h-8 w-24 bg-black flex justify-center items-center rounded-md">
-
-              <a className="font-normal text-sm text-white"
-                href="/"
-              >
-                Follow
-              </a>
-            </div>
             <div className="h-8 w-24 bg-black flex justify-center items-center rounded-md cursor-pointer"
               onClick={() =>
                 navigate("/make-appointment", {

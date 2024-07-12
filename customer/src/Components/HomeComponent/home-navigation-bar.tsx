@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-export function HomeNavigationBar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
-  const handleCloseLoginModal = () => {
-    setLoginModalOpen(false);
-  };
+interface Props {
+  setLoginModalOpen: any;
+}
+
+export function HomeNavigationBar(props:Props) {
+  const [isOpen, setIsOpen] = useState(false);
+
 
   const toggleMenu = () => {
+    props.setLoginModalOpen(true);
     setIsOpen(!isOpen);
   }
 
@@ -44,7 +46,7 @@ export function HomeNavigationBar() {
         
         <div className="flex justify-end items-center">
         <div className="bg-primary h-35px w-[100px] items-center justify-center">
-          <Link to='/login' className="text-white text-lg font-medium py-3 px-4 font-montserrat">Login</Link>
+          <Link to='/#Home' className="text-white text-lg font-medium py-3 px-4 font-montserrat" onClick={toggleMenu}>Login</Link>
             
           </div>
         </div>
@@ -98,8 +100,7 @@ export function HomeNavigationBar() {
                       </li>
                     </ul>
                     <span className="mt-10 flex flex-col justify-start items-start">
-                      <a href="/login" className="text-primary font-medium text-xl cursor-pointer py-2" onClick={toggleMenu}>Login</a>
-                      <a href="/register" className="text-primary font-medium text-xl cursor-pointer py-2" onClick={toggleMenu}>Register</a>
+                      <a href="/" className="text-primary font-medium text-xl cursor-pointer py-2" onClick={toggleMenu}>Login</a>
                   </span>
                   </div>
                   

@@ -45,7 +45,7 @@ export function AppointmentDetails({
   const navigate = useNavigate();
 
   const currentDate = new Date();
-let link:String;
+let link:string;
 
   const handleConfirmBooking = async () => {
     const validationErrors = validateForm();

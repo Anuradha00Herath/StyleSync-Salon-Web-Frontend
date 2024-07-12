@@ -96,11 +96,11 @@ export function NavigationBar(props: Props) {
             </ul>
           </div>
           <div className="flex justify-end items-center">
-            <div className="bg-primary h-35px w-[100px] items-center justify-center">
+            {/* <div className="bg-primary h-35px w-[100px] items-center justify-center">
               <Link to="/login" className="text-white text-lg font-medium py-3 px-4 font-montserrat">
                 Login
               </Link>
-            </div>
+            </div> */}
           </div>
         </nav>
 

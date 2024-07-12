@@ -29,7 +29,7 @@ export default function HomePage() {
   return (
     <>
       <div>
-        <HomeNavigationBar />
+        <HomeNavigationBar setLoginModalOpen={setLoginModalOpen}/>
       </div>
       <div id="home">
         <StartingPage userId={userId} />

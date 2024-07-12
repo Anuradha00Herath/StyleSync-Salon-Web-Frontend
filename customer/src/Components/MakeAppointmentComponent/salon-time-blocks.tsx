@@ -141,16 +141,7 @@ export function TimeBlocksList(props: Props) {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        background: "white",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-        padding: "20px",
-      }}
-    >
+    <div className="flex flex-row bg-white border border-gray-200 rounded-md py-2 px-4">
       {props.isOpen ? (
         <div>
           {" "}

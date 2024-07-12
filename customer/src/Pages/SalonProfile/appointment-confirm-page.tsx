@@ -33,7 +33,7 @@ export default function AppointmentConfirm() {
       <div>
         <NavigationBar userId={userId} />
       </div>
-      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <div className="w-full flex justify-center">
         <div style={{ width: "70%" }}>
           <div>
             <Description
@@ -46,14 +46,7 @@ export default function AppointmentConfirm() {
               image={image}
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
-          >
+          <div className="flex flex-row justify-between w-full pb-10">
             <AppointmentDetails
               date={date}
               staffId={staffId}

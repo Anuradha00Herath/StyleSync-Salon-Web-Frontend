@@ -3,6 +3,7 @@ import { SalonBlock } from "./salon-block";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import { CircularProgress } from "@mui/material";
 
 interface Salon {
   serviceType: string;
@@ -42,10 +43,18 @@ export const SalonSet = (props:Props) => {
     getSalonsUnderCategories();
   },[]);
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center w-full min-h-screen">
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <div className="py-10">
       <div className="flex flex-row justify-between items-center">
-        <div className="py-4 text-black text-base font-medium">Salons in {salon.serviceType}</div>
+        <div className="py-4 text-black text-xl font-medium">Salons in {salon.serviceType}</div>
         <div onClick={()=>navigate('/available-salons-under-service-type',{state:{serviceType: salon.serviceType, userId}})}>
           <a className="py-4 text-black text-base font-medium"
             href="http://localhost:3000/available-salons-under-service-type"
@@ -54,7 +63,7 @@ export const SalonSet = (props:Props) => {
           </a>
         </div>
       </div>
-      <div className="flex flex-wrap justify-between items-center">
+      <div className="flex flex-wrap justify-between items-center flex-col md:flex-row">
         {serviceBlock.map((block, index: React.Key) => (
           <SalonBlock block={block} key={index} userId={userId}/>
         ))}

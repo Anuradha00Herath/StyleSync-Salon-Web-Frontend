@@ -11,26 +11,12 @@ export default function SalonProfile() {
     location.state;
 
   return (
-    <div
-      style={{
-        backgroundColor: "#f8f5f3",
-      }}
-    >
+    <div className="bg-[#f8f5f3]">
       <div>
         <NavigationBar userId={userId} />
       </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "70%",
-          }}
-        >
+      <div className="w-full flex justify-center">
+        <div className="w-full md:w-[70%]">
           <div>
             <Description
               name={name}
@@ -42,14 +28,7 @@ export default function SalonProfile() {
               image={image}
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
-          >
+          <div className="flex flex-row justify-between w-full">
             <StaffServiceList
               salonId={id}
               userId={userId}

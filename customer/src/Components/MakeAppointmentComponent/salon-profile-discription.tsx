@@ -15,62 +15,26 @@ type Props = {
 export function Description(props: Props) {
   const navigate = useNavigate();
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "white",
-          marginTop: 10,
-          marginBottom: 10,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "95%",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: 10,
-          }}
-        >
-          <img
-            style={{
-              height: 200,
-              width: 250,
-            }}
+    <div className="flex justify-center items-center my-10">
+      <div className="bg-white py-2.5 px-6 rounded-md">
+
+        <div className="flex md:flex-row w-full items-center justify-between flex-col">
+          <img className="w-[200px]"
             src={props.image}
             alt="salon"
           />
-          <div
-            style={{
-              width: "33%",
-              marginLeft: 10,
-            }}
-          >
-            <h2>{props.name}</h2>
-            <p>
-              Manage your salon effortlessly with our app: book appointments,
-              track services, and connect with staff seamlessly.
+          <div className="w-[33%] px-2.5">
+            <h2 className="text-black font-bold text-xl font-montserrat">{props.name}</h2>
+            <p className="text-gray-500 font-normal text-base">
+              Small description about their salon. bla bkanskc hja
+              jhcjahabxsabch nacsbakjha knasjkcvahk babc nabab khabdcsa
+              kjhcacbsajkcnsan.
             </p>
           </div>
-          <div
-            style={{
-              width: 2,
-              height: 200, // Fixed height instead of percentage
-              backgroundColor: "black",
-            }}
-          ></div>
-          <div>
-            <p></p>
-            <p>
-              {props.line1}, {props.line2}, {props.city}
-            </p>
-            <p>{props.contactNo}</p>
+          <div className="h-[100px] hidden md:flex w-[1px] bg-black"/>
+          <div className="flex flex-col justify-start items-start gap-1">
+            <p className="text-black font-normal text-base">{props.line1}, {props.line2}, {props.city}</p>
+            <p className="text-black font-normal text-base">{props.contactNo}</p>
             <p>{props.openHours}</p>
             {/* <div
               style={{
@@ -83,12 +47,7 @@ export function Description(props: Props) {
               }}
               onClick={() => navigate("/map-view")}
             >
-              <span
-                style={{
-                  color: "white",
-                  textDecoration: "none",
-                }}
-              >
+              <span className="text-white text-base ">
                 View Map
               </span>
             </div> */}

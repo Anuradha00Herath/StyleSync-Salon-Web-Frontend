@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { SalonSet } from "../../Components/AvailableSalonComponent/salon-set";
 import SearchBar from "../../Components/AvailableSalonComponent/search-salon";
+import { CircularProgress } from "@mui/material";
 
 export default function AvailableSalonPage() {
   const navigate = useNavigate();
@@ -36,6 +37,14 @@ export default function AvailableSalonPage() {
   useEffect(() => {
     getAllCategories();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center w-full min-h-screen">
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  }
 
   return (
     <div>

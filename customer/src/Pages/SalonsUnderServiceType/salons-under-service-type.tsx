@@ -18,7 +18,7 @@ export default function SalonUnderServiceType() {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/show-salons-available-services",
+        "http://localhost:8000/customer/customer/show-salons-available-services",
         { params: { serviceType: serviceType } }
       );
       console.log(response.data.data);

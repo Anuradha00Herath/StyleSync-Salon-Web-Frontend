@@ -24,7 +24,7 @@ export const SalonSetTwo: React.FC<MyComponentProps> = ({ salon , userId}) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/show-salons-under-service",
+        "http://localhost:8000/customer/customer/show-salons-under-service",
         { params: { serviceName: salon.name } }
       );
       console.log(response.data.data);

@@ -38,7 +38,7 @@ export function AppointmentBar(props: Props) {
     setLoading(true);
     try {
       const response = await axios.put(
-        "https://stylesync-backend-test.onrender.com/customer/customer/cancel-appointment",
+        "http://localhost:8000/customer/customer/cancel-appointment",
         { userId, staffId, startTime, date }
       );
       console.log(response.data);

@@ -27,7 +27,7 @@ export const SalonSet = (props:Props) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/show-salons-under-categories",
+        "http://localhost:8000/customer/customer/show-salons-under-categories",
         { params: { serviceType: salon.serviceType } }
       );
       setServiceBlock(response.data.data);

@@ -21,7 +21,7 @@ export default function AvailableSalonPage() {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/show-salons-available-categories"
+        "http://localhost:8000/customer/customer/show-salons-available-categories"
       );
       console.log(response.data);
       setServiceSet(response.data.data);

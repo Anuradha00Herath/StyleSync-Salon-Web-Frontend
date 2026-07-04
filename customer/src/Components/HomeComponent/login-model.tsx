@@ -118,7 +118,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
       setLoading(true);
       try {
         const url =
-          "https://stylesync-backend-test.onrender.com/customer/customer/login-customer";
+          "http://localhost:8000/customer/customer/login-customer";
         const response = await axios.post(url, { email, password });
         const responseId = response.data.data.id; // Capture the response ID here
 
@@ -183,7 +183,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
       setLoading(true);
       try {
         const url =
-          "https://stylesync-backend-test.onrender.com/customer/customer/register-customer";
+          "http://localhost:8000/customer/customer/register-customer";
         const response = await axios.post(url, {
           name,
           email,
@@ -215,14 +215,14 @@ const LoginModal: React.FC<LoginModalProps> = ({
       }
 
       const url =
-        "https://stylesync-backend-test.onrender.com/customer/customer/generate-otp";
+        "http://localhost:8000/customer/customer/generate-otp";
       const response = await axios.put(url, {userId:responseId, email});
 
       if (response.status === 200) {
         const userInput = prompt("Enter OTP in your email", "");
         if (userInput !== null) {
           const verifyUrl =
-            "https://stylesync-backend-test.onrender.com/customer/customer/verified-email";
+            "http://localhost:8000/customer/customer/verified-email";
           const verifyResponse = await axios.put(verifyUrl, {
             userId: responseId,
             otp: userInput,

@@ -35,7 +35,7 @@ export function NavigationBar(props: Props) {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/get-appointment-details",
+        "http://localhost:8000/customer/customer/get-appointment-details",
         { params: { userId } }
       );
       const upcomingAppointments = response.data.data.filter((appointment: Appointment) => {

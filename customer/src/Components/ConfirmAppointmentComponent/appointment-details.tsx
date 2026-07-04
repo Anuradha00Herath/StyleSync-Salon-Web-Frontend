@@ -58,7 +58,7 @@ let link:string;
     try {
       if (!userId) {
         const response = await axios.post(
-          "https://stylesync-backend-test.onrender.com/customer/customer/temp-customer-register",
+          "http://localhost:8000/customer/customer/temp-customer-register",
           {
             email,
             contactNo: contactNumber,
@@ -93,7 +93,7 @@ let link:string;
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/get-customer-details",
+        "http://localhost:8000/customer/customer/get-customer-details",
         { params: { userId: initialUserId } }
       );
       const data = response.data.data[0];
@@ -119,13 +119,13 @@ let link:string;
       }
 
       const url =
-        "https://stylesync-backend-test.onrender.com/customer/customer/generate-otp";
+        "http://localhost:8000/customer/customer/generate-otp";
       const response = await axios.put(url, { userId: responseId, email });
       if (response.status === 200) {
         const userInput = prompt("Enter OTP sent to your email", "");
         if (userInput !== null) {
           const verifyUrl =
-            "https://stylesync-backend-test.onrender.com/customer/customer/verified-email";
+            "http://localhost:8000/customer/customer/verified-email";
           const verifyResponse = await axios.put(verifyUrl, {
             userId: responseId,
             otp: userInput,
@@ -169,7 +169,7 @@ let link:string;
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://stylesync-backend-test.onrender.com/customer/customer/create-appointment",
+        "http://localhost:8000/customer/customer/create-appointment",
         {
           userId,
           date,

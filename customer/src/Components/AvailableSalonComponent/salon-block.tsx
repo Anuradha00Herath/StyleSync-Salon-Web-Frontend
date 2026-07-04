@@ -29,7 +29,7 @@ export const SalonBlock: React.FC<MyComponentProps> = ({ block, userId }) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/get-salon-details",
+        "http://localhost:8000/customer/customer/get-salon-details",
         { params: { salonId: block.id } }
       );
       setService(response.data.data2);

@@ -44,7 +44,7 @@ export default function AppointmentSuccessful() {
     }
     console.log("inputs", userId,staffId,slotStart,date);
     try{
-      const response = await axios.get("https://stylesync-backend-test.onrender.com/customer/customer/appointment-details",{params:{
+      const response = await axios.get("http://localhost:8000/customer/customer/appointment-details",{params:{
         userId,
         staffId,
         date:date,

@@ -19,7 +19,7 @@ export function ServicesPage(props:Props) {
     setLoading(true);
     try {
         
-       const response = await axios.get("https://stylesync-backend-test.onrender.com/customer/customer/get-all-categories")
+       const response = await axios.get("http://localhost:8000/customer/customer/get-all-categories")
         console.log(response.data.data);
         setServiceTypes(response.data.data);
         setLoading(false);

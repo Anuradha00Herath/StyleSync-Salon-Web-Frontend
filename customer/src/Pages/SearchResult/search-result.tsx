@@ -21,7 +21,7 @@ export default function SearchResultPage() {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/search-salon",
+        "http://localhost:8000/customer/customer/search-salon",
         { params: { key } }
       );
       console.log(response.data);

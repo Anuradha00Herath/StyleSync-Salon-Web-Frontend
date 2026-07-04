@@ -16,7 +16,7 @@ export default function TempCustomerLogin() {
         navigate('/', { state: { id } });
       } else {
         const response = await axios.get(
-          "https://stylesync-backend-test.onrender.com/customer/customer/tem-customer-login",
+          "http://localhost:8000/customer/customer/tem-customer-login",
           { params: { token, userId } }
         );
         console.log(response.data.data);

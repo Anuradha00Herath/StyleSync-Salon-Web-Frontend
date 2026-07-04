@@ -41,7 +41,7 @@ export function StaffServiceList(props: Props) {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/get-staff-details",
+        "http://localhost:8000/customer/customer/get-staff-details",
         { params: { salonId: props.salonId } }
       );
       setSalonStaff(response.data.data);
@@ -60,7 +60,7 @@ export function StaffServiceList(props: Props) {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/get-service-of-staff",
+        "http://localhost:8000/customer/customer/get-service-of-staff",
         { params: { staffId: staffId } }
       );
       setStaffServices(response.data.data);
@@ -83,7 +83,7 @@ export function StaffServiceList(props: Props) {
       console.log("selected date", date);
       const dayName = getDayName(date);
       const response = await axios.get(
-        "https://stylesync-backend-test.onrender.com/customer/customer/staff-available-time",
+        "http://localhost:8000/customer/customer/staff-available-time",
         {
           params: {
             staffId: staffId,
